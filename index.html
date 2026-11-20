@@ -1,53 +1,12 @@
 <!doctype html>
 <html lang="es-PE">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Audífonos A · Omni-SI Falabella</title>
-  <link rel="stylesheet" href="estilos.css">
-  <script src="disponibilidad.js" defer></script>
-</head>
-<body>
-  <header>
-    <div class="barra">
-      <strong class="marca">Omni<span>-</span>SI <small>Falabella</small></strong>
-      <span class="canal">Retiro en tienda</span>
-    </div>
-  </header>
-  <main>
-    <p class="ruta">Catálogo <span>/</span> Audio <span>/</span> Audífonos</p>
-    <article>
-      <figure aria-label="Ilustración de los Audífonos A en color grafito">
-        <div class="audifonos" aria-hidden="true">
-          <div class="diadema"></div>
-          <div class="copa izquierda"></div>
-          <div class="copa derecha"></div>
-        </div>
-        <figcaption><i></i> Grafito</figcaption>
-      </figure>
-      <section aria-labelledby="producto">
-        <p class="categoria">Audio inalámbrico</p>
-        <h1 id="producto">Audífonos A</h1>
-        <p class="precio">S/ 99.90</p>
-        <form id="consulta">
-          <h2>Consulta el stock para retiro</h2>
-          <div class="campos">
-            <label>Tienda de retiro
-              <select id="tienda">
-                <option value="A">Tienda A</option>
-                <option value="B">Tienda B</option>
-              </select>
-            </label>
-            <label>Cantidad
-              <input id="cantidad" type="number" min="1" step="1" value="1" required>
-            </label>
-          </div>
-          <button>Consultar disponibilidad</button>
-          <output id="resultado" role="status" aria-live="polite"></output>
-        </form>
-      </section>
-    </article>
-  </main>
-  <footer>Prototipo académico · Stock y precios de demostración</footer>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Omni-SI Falabella</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

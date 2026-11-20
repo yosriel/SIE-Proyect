@@ -1,42 +1,39 @@
 # Omni-SI Falabella
 
-Web responsiva del proyecto académico SIE Proyect. El punto 8 del APF3 pide mostrar la evolución del prototipo o software por sprint. La fuente de alcance es el informe APF2, en especial las secciones 16, 17 y 21.
+Web responsiva del proyecto académico SIE Proyect para el punto 8 del APF3. Los tres sprints usan React en el navegador. Vite ejecuta el servidor de desarrollo y compila la aplicación estática.
 
-## Ramas y demostraciones
+## Ejecutar desde una copia limpia
 
-| Rama | Uso |
-| --- | --- |
-| `main` | Versiones aceptadas para entrega. |
-| `dev` | Integración de incrementos revisados. |
-| `Sprint1` | Primera versión demostrable. |
-| `Sprint2` | Segundo incremento, a partir del primero integrado. |
-| `Sprint3` | Tercer incremento, a partir del segundo integrado. |
-
-Cada rama de sprint nace de `dev`. Al cerrar una demostración, integrar la rama en `dev` y conservarla en su último commit para volver a mostrarla. Antes de iniciar el sprint siguiente, actualizar su rama reservada desde `dev` con `git merge --ff-only dev`. Para ver qué añadió un sprint ya integrado, usar, por ejemplo, `git diff Sprint1..Sprint2`. La integración final a `main` se realiza tras la revisión de la entrega.
-
-## Consultar un incremento
-
-Con Git 2.23 o posterior, ejecutar `git switch Sprint1` para consultar la primera demo y sus instrucciones. Los sprints posteriores se implementan en orden. El informe describe el Sprint 1 como planificación, el Sprint 2 como modelado de procesos y el Sprint 3 como arquitectura e integración. Las demos del APF3 traducen ese trabajo previo en software.
-
-## Sprint 1 · Producto y tienda de retiro
-
-El APF2 recoge la planificación en su sección 16.1. Como primera demostración de software para el APF3, esta rama hace interactiva la pantalla «Producto y tienda de retiro» del apartado 21.1.1 (HU01). Permite elegir la tienda y la cantidad, y consultar existencias ficticias. La consulta conserva el stock. La reserva, el pedido y la entrega son pasos posteriores.
-
-### Ejecutar desde una copia limpia
-
-Abrir `index.html` en un navegador moderno o, con Python 3, ejecutar desde la raíz:
+Versiones probadas: Node.js 26.13.1, npm 11.20.0, React y React DOM 19.3.0, Vite 8.3.4. El proyecto requiere Node.js 22.12 o posterior. Las dependencias están fijadas en el archivo de bloqueo.
 
 ```sh
-python3 -m http.server 8000 --bind 127.0.0.1
+npm ci
+npm run dev
 ```
 
-Abrir `http://127.0.0.1:8000/`. HTML, CSS y JavaScript se sirven directamente, sin instalación de paquetes, compilación, credenciales ni variables de entorno.
+Abrir la dirección local que imprime Vite. Para probar desde un celular conectado a la misma red de confianza, ejecutar `npm run dev -- --host 0.0.0.0` y abrir la dirección de red que imprime Vite.
 
-### Reproducir la demo
+## Compilar y verificar
 
-1. Consultar 1 y 8 unidades en Tienda A. En ambos casos se informa disponibilidad y un stock de 8.
-2. Solicitar 9 en A y luego 1 en Tienda B. La primera consulta informa el máximo disponible y la segunda indica falta de stock.
-3. Cambiar de tienda o de cantidad tras una consulta. El resultado previo desaparece. Dejar la cantidad vacía o escribir 0 o 1.5 e intentar consultar. El navegador solicita una cantidad entera positiva.
-4. Repetir en un viewport de celular (390 px) y en uno de escritorio (1280 px). Comprobar que el formulario y su resultado se ven completos.
+```sh
+npm run build
+npm run preview
+```
 
-Capturas del incremento con una consulta válida en la Tienda A: [celular](evidencias/celular.png) y [PC](evidencias/pc.png).
+El resultado está en `dist/`. Abrir la dirección que imprime la vista previa y comprobar el incremento en celular y en PC. Con acceso al registro de npm, ejecutar `npm audit` para revisar dependencias directas y transitivas.
+
+## Trabajar por sprint
+
+| Rama | Propósito |
+| --- | --- |
+| main | Entregas aceptadas. |
+| dev | Base común e integración de los incrementos revisados. |
+| Sprint1 | Inicio y planificación del proyecto. |
+| Sprint2 | Modelado de procesos omnicanal y demostración de sus flujos. |
+| Sprint3 | Arquitectura e integración. |
+
+Usar `git switch Sprint1`, `git switch Sprint2` o `git switch Sprint3` para abrir una rama. Cada incremento parte del anterior y se conserva en su rama para la exposición. Tras la revisión, integrar en dev. Actualizar las ramas reservadas desde dev antes de continuar su implementación. La fuente académica es APF2, secciones 16, 17 y 21.
+
+## Demo del Sprint 1
+
+Abrir la página inicial, desplegar «Actividades y responsables del sprint» y comprobar las diez actividades SP1-01 a SP1-10 del APF2 (sección 17.1). Al cerrar el detalle vuelve a quedar visible el resumen. Repetir a 390 y 1280 px de ancho. Las capturas están en [celular](evidencias/celular.png) y [PC](evidencias/pc.png).

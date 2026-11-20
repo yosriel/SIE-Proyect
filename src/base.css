@@ -1,0 +1,18 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #17392e; background: #fafbf8; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.pagina { width: min(66rem, 90%); margin: clamp(2rem, 6vw, 5rem) auto; }
+.pagina h1 { margin: .4rem 0 1rem; font-size: clamp(2.4rem, 6vw, 4.5rem); line-height: 1.05; letter-spacing: -.055em; }
+.rotulo { font-size: .9rem; font-weight: 650; color: #346648; }
+.pagina .periodo { color: #4d6359; }
+.pagina section, .pagina details { margin-top: 2rem; padding: 1.5rem; background: #fff; border: 1px solid #ccd9cf; border-radius: 1rem; }
+.pagina h2 { margin: 0; font-size: 1.35rem; }
+.pagina section p { max-width: 68ch; line-height: 1.6; margin-bottom: 0; }
+.pagina summary { font-weight: 650; cursor: pointer; }
+.pagina summary:focus-visible { outline: 3px solid #44724d; outline-offset: 4px; }
+.backlog { padding: 0; list-style: none; }
+.backlog li { padding: .9rem 0; border-bottom: 1px solid #dbe4df; display: grid; gap: .5rem; grid-template-columns: 5rem 2fr 1fr; }
+.codigo { color: #4d6359; }
+@media (max-width: 42rem) {
+  .backlog li { grid-template-columns: 1fr; gap: .25rem; }
+}
