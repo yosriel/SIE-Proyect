@@ -1,0 +1,26 @@
+name: Importar historial de SIE Proyect
+on:
+  push:
+    branches: [transferencia-6170f14]
+    paths: [transferencia/listo]
+permissions:
+  contents: write
+jobs:
+  importar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar el paquete y publicar las cinco ramas
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 --decode transferencia/repositorio.bundle.b64 > "$RUNNER_TEMP/SIE.bundle"
+          echo "d834401cc2a0c0222930e72e23cf367f6eff8eeafa1529e8d01dcd387f6d6c41  $RUNNER_TEMP/SIE.bundle" | sha256sum --check
+          git bundle verify "$RUNNER_TEMP/SIE.bundle"
+          git fetch "$RUNNER_TEMP/SIE.bundle" 'refs/heads/*:refs/importacion/*'
+          test "$(git rev-parse refs/importacion/main)" = 6170f14fd1ee1b182e1912a735b8ba44feab1d79
+          inicial=$(cat transferencia/listo)
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$inicial"
+          git push --atomic --force-with-lease="refs/heads/main:$inicial" --force-with-lease=refs/heads/dev: --force-with-lease=refs/heads/Sprint1: --force-with-lease=refs/heads/Sprint2: --force-with-lease=refs/heads/Sprint3: origin refs/importacion/main:refs/heads/main refs/importacion/dev:refs/heads/dev refs/importacion/Sprint1:refs/heads/Sprint1 refs/importacion/Sprint2:refs/heads/Sprint2 refs/importacion/Sprint3:refs/heads/Sprint3
+          git push --force-with-lease="refs/heads/transferencia-6170f14:$GITHUB_SHA" origin :refs/heads/transferencia-6170f14
