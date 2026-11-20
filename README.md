@@ -2,6 +2,12 @@
 
 Web responsiva del proyecto académico SIE Proyect para el punto 8 del APF3. Los tres sprints usan React en el navegador. Vite ejecuta el servidor de desarrollo y compila la aplicación estática.
 
+## Entrega del punto 8 del APF3
+
+- [Demostración de los tres sprints](entrega/Omni-SI-Falabella-APF3.zip). Extraer todo el paquete y abrir PRESENTACION.html. Contiene las tres compilaciones React, el contrato del gateway y un guion de exposición. LEEME.txt incluye la opción de servir la carpeta con Python 3 para acceder desde un celular.
+- [Documento para el informe grupal](entrega/Punto-8-APF3.docx). Incluye el alcance, los incrementos, las capturas y los resultados de verificación.
+- La rama main contiene la entrega final. Las ramas Sprint1, Sprint2 y Sprint3 permiten consultar sus fuentes y comparar incrementos con `git diff Sprint1..Sprint2` y `git diff Sprint2..Sprint3`.
+
 ## Ejecutar desde una copia limpia
 
 Versiones probadas: Node.js 26.13.1, npm 11.20.0, React y React DOM 19.3.0, Vite 8.3.4. El proyecto requiere Node.js 22.12 o posterior. Las dependencias están fijadas en el archivo de bloqueo.
@@ -36,7 +42,7 @@ Usar `git switch Sprint1`, `git switch Sprint2` o `git switch Sprint3` para abri
 
 ## Demo del Sprint 1
 
-Abrir la página inicial, desplegar «Actividades y responsables del sprint» y comprobar las diez actividades SP1-01 a SP1-10 del APF2 (sección 17.1). Al cerrar el detalle vuelve a quedar visible el resumen. Repetir a 390 y 1280 px de ancho. Las capturas están en [celular](evidencias/celular.png) y [PC](evidencias/pc.png).
+En Sprint1, abrir la página inicial. En las versiones posteriores, elegir Planificación. Desplegar «Actividades y responsables del sprint» y comprobar las diez actividades SP1-01 a SP1-10 del APF2 (sección 17.1). Al cerrar el detalle vuelve a quedar visible el resumen. Repetir a 390 y 1280 px de ancho. Las capturas están en [celular](evidencias/celular.png) y [PC](evidencias/pc.png).
 
 ## Sprint 2 · Procesos omnicanal
 
