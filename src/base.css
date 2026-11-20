@@ -1,0 +1,6 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #17392e; background: #fafbf8; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.pagina { width: min(66rem, 90%); margin: clamp(2rem, 6vw, 5rem) auto; }
+.pagina h1 { margin: .4rem 0 1rem; font-size: clamp(2.4rem, 6vw, 4.5rem); line-height: 1.05; letter-spacing: -.055em; }
+.rotulo { font-size: .9rem; font-weight: 650; color: #346648; }
