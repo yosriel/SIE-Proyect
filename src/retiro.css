@@ -1,0 +1,30 @@
+.retiro {
+  figure {
+    margin: 0; position: relative; isolation: isolate; display: grid; place-items: center;
+    aspect-ratio: 1.13; overflow: hidden; border-radius: 1.5rem;
+    background: radial-gradient(ellipse at 25% 20%, #e7edfd, #ced4e7 60%, #b4b9ce);
+  }
+  figure::before {
+    content: ""; position: absolute; width: 60%; height: 6%; bottom: 14%; z-index: -1;
+    background: #4a516f55; border-radius: 50%; filter: blur(.8rem);
+  }
+  .audifonos { width: 48%; aspect-ratio: 1 / 1.02; position: relative; transform: rotate(-13deg); }
+  .diadema {
+    position: absolute; inset: 0 5% 14%; border: clamp(.75rem, 1.6vw, 1.4rem) solid #252c38;
+    border-bottom: 0; border-radius: 48% 48% 24% 24%;
+    box-shadow: inset 2px 4px 3px #8d94a2, 2px -3px 1px #656d7f;
+  }
+  .copa {
+    position: absolute; width: 27%; height: 47%; bottom: 0; border-radius: 42%;
+    background: linear-gradient(100deg, #272c37 8%, #747a89 15%, #414754 30%, #282d38 75%, #171c25 80%, #414754 90%);
+    box-shadow: inset 1px 2px 3px #8a90a1, 2px 5px 5px #20233655;
+  }
+  .izquierda { left: 0; transform: rotate(-9deg); }
+  .derecha { right: 0; transform: rotate(9deg); }
+  figcaption { position: absolute; bottom: 1.25rem; left: 1.5rem; display: flex; align-items: center; gap: .5rem; font-size: .9rem; }
+  figcaption i { width: .85rem; height: .85rem; border-radius: 50%; background: #323843; border: 2px solid white; }
+  @media (max-width: 46rem) {
+    figure { aspect-ratio: 1.8; }
+    .audifonos { width: 35%; }
+  }
+}
