@@ -1,77 +1,50 @@
 import { useState } from 'react';
+import { disponible, dinero, fecha, PRECIO, ubicaciones } from './dominio/modelo.js';
+import { BuscarPedido, Campo, Formulario, Historial, Panel } from './ui.jsx';
 import './retiro.css';
 
-const stockPorTienda = { A: 8, B: 0 };
-
-function ConsultaStock() {
-  const [resultado, setResultado] = useState(null);
-
-  function consultar(evento) {
-    evento.preventDefault();
-    const datos = new FormData(evento.currentTarget);
-    const tienda = datos.get('tienda');
-    const cantidad = Number(datos.get('cantidad'));
-    const stock = stockPorTienda[tienda];
-    const disponible = cantidad <= stock;
-    let mensaje = `Disponible para retiro en Tienda ${tienda}. Stock actual: ${stock} unidades.`;
-    if (stock === 0) {
-      mensaje = `Tienda ${tienda} está sin stock para retiro.`;
-    } else if (!disponible) {
-      mensaje = `Stock insuficiente en Tienda ${tienda}. Puedes solicitar hasta ${stock} unidades.`;
-    }
-    setResultado({ mensaje, disponible });
-  }
-
-  return (
-    <form onSubmit={consultar} onChange={() => setResultado(null)}>
-      <h2>Consulta el stock para retiro</h2>
-      <div className="campos">
-        <label>Tienda de retiro
-          <select name="tienda" defaultValue="A">
-            {Object.keys(stockPorTienda).map(id => <option key={id} value={id}>Tienda {id}</option>)}
-          </select>
-        </label>
-        <label>Cantidad
-          <input name="cantidad" type="number" min="1" step="1" defaultValue="1" required />
-        </label>
-      </div>
-      <button>Consultar disponibilidad</button>
-      <output role="status" data-estado={resultado && !resultado.disponible ? 'insuficiente' : undefined}>
-        {resultado?.mensaje}
-      </output>
-    </form>
-  );
+function Producto({ db, hacer, ir }) {
+  const [tienda, setTienda] = useState('');
+  const [cantidad, setCantidad] = useState(1);
+  const [consulta, consultar] = useState(false);
+  const ok = tienda && Number.isInteger(+cantidad) && +cantidad > 0 && +cantidad <= disponible(db.stock[tienda]);
+  return <div className="producto">
+    <div className="retiro"><figure aria-label="Audífonos color grafito">
+      <div className="audifonos" aria-hidden="true"><div className="diadema"/><div className="copa izquierda"/><div className="copa derecha"/></div>
+      <figcaption><i/> Grafito</figcaption></figure></div>
+    <Panel titulo="Audífonos A"><p className="precio">{dinero(PRECIO)}</p>
+      <form onSubmit={e => { e.preventDefault(); consultar(true); }}>
+        <Campo nombre="Tienda de retiro"><select required value={tienda} onChange={e => { setTienda(e.target.value); consultar(false); }}>
+          <option value="">Selecciona una tienda</option>{ubicaciones.slice(0, 2).map(l => <option key={l} value={l} disabled={!disponible(db.stock[l])}>{l} · {disponible(db.stock[l])} disponibles</option>)}</select></Campo>
+        <Campo nombre="Cantidad" type="number" min="1" step="1" value={cantidad} onChange={e => {setCantidad(e.target.value); consultar(false);}} />
+        <button>Consultar disponibilidad</button>
+      </form>
+      <p>Centro de distribución · {disponible(db.stock['CD Lima'])} unidades. Traslado referencial en 2 días.</p>
+      {consulta && <p role="status" className={ok ? 'exito' : 'error'}>{ok ? 'Disponible para retiro' : 'Stock insuficiente'} · {tienda} · {disponible(db.stock[tienda])} unidades</p>}
+      {consulta && ok && <Formulario boton="Confirmar pedido" accion={a => hacer('reservar', { ...a, tienda, cantidad })} fin={id => ir('seguimiento', id)}>
+        <strong>{cantidad} × Audífonos A · Total {dinero(cantidad * PRECIO)}</strong>
+        <Campo nombre="Documento ficticio del cliente" name="dni" inputMode="numeric" pattern="[0-9]{8}" defaultValue="00000001" />
+      </Formulario>}
+    </Panel></div>;
 }
 
-export default function Retiro() {
-  return (
-    <div className="retiro">
-      <header>
-        <div className="barra">
-          <strong className="marca">Omni<span>-</span>SI <small>Falabella</small></strong>
-          <span className="canal">Retiro en tienda</span>
-        </div>
-      </header>
-      <main>
-        <p className="ruta">Catálogo <span>/</span> Audio <span>/</span> Audífonos</p>
-        <article>
-          <figure aria-label="Ilustración de los Audífonos A en color grafito">
-            <div className="audifonos" aria-hidden="true">
-              <div className="diadema"></div>
-              <div className="copa izquierda"></div>
-              <div className="copa derecha"></div>
-            </div>
-            <figcaption><i></i> Grafito</figcaption>
-          </figure>
-          <section aria-labelledby="producto">
-            <p className="categoria">Audio inalámbrico</p>
-            <h1 id="producto">Audífonos A</h1>
-            <p className="precio">S/ 99.90</p>
-            <ConsultaStock />
-          </section>
-        </article>
-      </main>
-      <footer>Prototipo académico · Stock y precios de demostración</footer>
-    </div>
-  );
+export default function Retiro({ db, vista, hacer, ir, id }) {
+  const [seleccion, elegir] = useState(id);
+  if (vista === 'retiro') return <Producto {...{db, hacer, ir}}/>;
+  const p = db.pedidos.find(x => x.id === seleccion);
+  const cliente = vista === 'seguimiento';
+  const paso = (accion, boton, confirmar) => <Formulario key={accion} boton={boton} confirmar={confirmar} accion={() => hacer('pedido', { id:p.id, accion })}/>;
+  return <div className="columnas"><Panel titulo="Localizar pedido"><BuscarPedido pedidos={db.pedidos} elegir={elegir}/></Panel>
+    <Panel titulo={p ? p.id : 'Selecciona un pedido'}>{p && <>
+      <p className="estado">{p.estado}</p><p>Audífonos A · {p.cantidad} unidades · {dinero(p.cantidad * p.precio)}</p>
+      <p>{p.tienda} · Documento ••••{p.dni.slice(-4)}</p>
+      {cliente && p.estado === 'Listo para retiro' && <div className="exito">Listo para retiro de 10:00 a 20:00. Código <strong>{p.codigo}</strong><br/>Vigente hasta {fecha(p.vence)}</div>}
+      {cliente && ['Reservado','En preparación','Listo para retiro'].includes(p.estado) && paso('cancelar','Cancelar pedido','¿Cancelar el pedido y liberar la reserva?')}
+      {!cliente && p.estado === 'Reservado' && paso('preparar','Iniciar preparación')}
+      {!cliente && p.estado === 'En preparación' && paso('listo','Marcar listo para retiro')}
+      {!cliente && p.estado === 'Listo para retiro' && <Formulario boton="Confirmar entrega" confirmar="La entrega descuenta el inventario y cierra el retiro. ¿Confirmar?" accion={a => hacer('pedido', { ...a, id:p.id, accion:'entregar' })}>
+        <Campo nombre="Código de retiro" name="codigo"/><Campo nombre="Documento del cliente" name="dni" pattern="[0-9]{8}"/>
+      </Formulario>}
+      <Historial eventos={db.eventos.filter(e => e.entidad === p.id)}/>
+    </>}</Panel></div>;
 }

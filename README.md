@@ -38,6 +38,17 @@ Usar `git switch Sprint1`, `git switch Sprint2` o `git switch Sprint3` para abri
 
 Abrir la página inicial, desplegar «Actividades y responsables del sprint» y comprobar las diez actividades SP1-01 a SP1-10 del APF2 (sección 17.1). Al cerrar el detalle vuelve a quedar visible el resumen. Repetir a 390 y 1280 px de ancho. Las capturas están en [celular](evidencias/celular.png) y [PC](evidencias/pc.png).
 
-## Sprint 2 en preparación
+## Sprint 2 · Procesos omnicanal
 
-La pantalla inicial «Consulta de stock» conserva la demostración de HU01 en React. Desde «Planificación» también se puede consultar el primer incremento. Para reproducir la prueba, solicitar 1, 8 y 9 unidades en Tienda A (stock 8) y 1 unidad en Tienda B (agotada). Al cambiar los datos debe desaparecer el resultado anterior. El navegador valida que la cantidad sea un entero positivo. Capturas de la consulta en [celular](evidencias/stock-celular.png) y [PC](evidencias/stock-pc.png).
+Las nueve pantallas del APF2 (sección 21) permiten recorrer los cuatro procesos en el menú principal. Los perfiles de cliente, tienda, finanzas y administrador son pasos de una simulación guiada. Usar únicamente documentos y expedientes ficticios. Los datos persisten en IndexedDB por navegador y origen.
+
+| Historia | Recorrido de demostración |
+| --- | --- |
+| HU01 Compra con retiro | Elegir Tienda A y 2 unidades. Consultar disponibilidad y confirmar con el documento ficticio 00000001. Copiar el número de pedido. En Entrega en tienda iniciar preparación y marcarlo listo. Consultar el código en Seguimiento del pedido y validar código y documento en Entrega. En otro pedido, probar Cancelar y comprobar la liberación de la reserva. |
+| HU02 Inventario | Consultar el físico, reservado y disponible por ubicación. Registrar un ingreso, una venta POS o un traslado entre tiendas, revisar el saldo y el historial. La cuarentena se controla por separado. |
+| HU03 Devoluciones | Buscar el pedido entregado o PED-DEMO, seleccionar la compra, el motivo, la cantidad y la condición. Registrar y procesar el reembolso simulado. Una unidad dañada va a cuarentena. PED-VENCIDO permite demostrar el rechazo por plazo. |
+| HU04 Marketplace | Registrar razón social, RUC ficticio de 11 dígitos y referencia del expediente. Solicitar corrección con una observación, reenviar y aprobar. En Productos y despachos registrar un artículo, aprobar su publicación, simular un pedido y registrar el número de guía. |
+
+Cada tienda parte de existencias de ejemplo. La Tienda A inicia con 10 unidades físicas y 2 reservadas previas. Las compras nuevas reservan existencias hasta la entrega. El plazo ilustrativo de retiro es de 48 horas y el de devolución de 30 días. El aviso de retiro, los pagos, las referencias a documentos y los despachos son simulados. Las pestañas del mismo origen comparten el estado. Para iniciar otro ensayo independiente se puede usar un perfil de navegador nuevo.
+
+Para probar las reglas de negocio ejecutar `npm test`. Para revisar la interfaz, repetir los recorridos a 390 y 1280 px y comprobar que el estado persiste al recargar.
