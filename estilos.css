@@ -1,0 +1,65 @@
+:root {
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  color: #13241f;
+  background: #fafbf8;
+  font-size: 100%;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+header { background: #123e31; color: #fff; }
+.barra, main, footer { width: min(70rem, 90%); margin-inline: auto; }
+.barra { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 5rem; }
+.marca { font-size: 1.7rem; letter-spacing: -.07em; }
+.marca span { color: #b6ed78; }
+.marca small { font-size: 1rem; font-weight: 500; letter-spacing: -.03em; margin-left: .3rem; }
+.canal { font-size: .9rem; }
+.ruta { margin: 2rem 0; color: #50645a; font-size: .9rem; }
+.ruta span { margin-inline: .5rem; color: #84938a; }
+article { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+figure {
+  margin: 0; position: relative; isolation: isolate; display: grid; place-items: center;
+  aspect-ratio: 1.13; overflow: hidden; border-radius: 1.5rem;
+  background: radial-gradient(ellipse at 25% 20%, #e7edfd, #ced4e7 60%, #b4b9ce);
+}
+figure::before {
+  content: ""; position: absolute; width: 60%; height: 6%; bottom: 14%; z-index: -1;
+  background: #4a516f55; border-radius: 50%; filter: blur(.8rem);
+}
+.audifonos { width: 48%; aspect-ratio: 1 / 1.02; position: relative; transform: rotate(-13deg); }
+.diadema {
+  position: absolute; inset: 0 5% 14%; border: clamp(.75rem, 1.6vw, 1.4rem) solid #252c38;
+  border-bottom: 0; border-radius: 48% 48% 24% 24%;
+  box-shadow: inset 2px 4px 3px #8d94a2, 2px -3px 1px #656d7f;
+}
+.copa {
+  position: absolute; width: 27%; height: 47%; bottom: 0; border-radius: 42%;
+  background: linear-gradient(100deg, #272c37 8%, #747a89 15%, #414754 30%, #282d38 75%, #171c25 80%, #414754 90%);
+  box-shadow: inset 1px 2px 3px #8a90a1, 2px 5px 5px #20233655;
+}
+.izquierda { left: 0; transform: rotate(-9deg); }
+.derecha { right: 0; transform: rotate(9deg); }
+figcaption { position: absolute; bottom: 1.25rem; left: 1.5rem; display: flex; align-items: center; gap: .5rem; font-size: .9rem; }
+figcaption i { width: .85rem; height: .85rem; border-radius: 50%; background: #323843; border: 2px solid white; }
+.categoria { color: #346648; font-size: .9rem; font-weight: 650; }
+h1 { margin: 0; font-size: clamp(2.7rem, 5vw, 4.25rem); letter-spacing: -.07em; line-height: 1.05; }
+.precio { margin: 1rem 0 2rem; font-size: 1.75rem; font-weight: 550; }
+form { border-top: 1px solid #ccd5ce; padding-top: 1.5rem; }
+h2 { font-size: 1.2rem; margin: 0 0 1.25rem; }
+.campos { display: grid; grid-template-columns: minmax(0, 1fr) 6.5rem; gap: 1rem; }
+label { display: grid; gap: .45rem; font-size: .9rem; font-weight: 600; }
+input, select, button { font: inherit; border-radius: .55rem; min-height: 3rem; }
+input, select { width: 100%; background: white; border: 1px solid #9cab9f; padding-inline: .8rem; font-size: 1rem; color: #13241f; }
+button { margin-top: 1rem; width: 100%; border: 0; background: #174e3c; color: white; cursor: pointer; font-weight: 650; }
+button:hover { background: #103d2e; }
+:focus-visible { outline: 3px solid #446bdf; outline-offset: 2px; }
+output:not(:empty) { display: block; margin-top: 1rem; border-radius: .5rem; padding: .8rem 1rem; background: #e1efdf; }
+output[data-estado="insuficiente"] { background: #fae9ce; }
+footer { margin-block: 2.5rem; padding-top: 1.2rem; border-top: 1px solid #ccd5ce; font-size: .85rem; color: #546458; }
+@media (max-width: 46rem) {
+  article { grid-template-columns: 1fr; gap: 1.5rem; }
+  figure { aspect-ratio: 1.8; }
+  .audifonos { width: 35%; }
+  .barra { min-height: 4rem; }
+  .ruta { margin: 1.2rem 0; }
+  .categoria { margin-top: 0; }
+}
