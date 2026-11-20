@@ -1,13 +1,17 @@
 import { nuevaBase, uid } from './modelo.js';
-import { operaciones, vencerReservas } from './operaciones.js';
-import { marketplace } from './marketplace.js';
+import { vencerReservas } from './operaciones.js';
+import { encolar, iniciarIntegracion, propagar } from '../integracion/canales.js';
+import { despachar } from '../integracion/gateway.js';
+import { endpoints, prefijo } from '../integracion/contratos.js';
 
-const acciones = { ...operaciones, ...marketplace };
+
 let conexion;
 function abrir() {
   if (!conexion) {
     conexion = new Promise((resolve, reject) => {
-      const peticion = indexedDB.open('omni-si-apf3', 1);
+      const carpeta = new URL('.', window.location.href).pathname;
+      const nombre = carpeta === '/' ? 'omni-si-apf3' : 'omni-si-apf3:' + carpeta;
+      const peticion = indexedDB.open(nombre, 1);
       peticion.onupgradeneeded = () => peticion.result.createObjectStore('demo');
       peticion.onsuccess = () => resolve(peticion.result);
       peticion.onerror = () => { conexion = null; reject(peticion.error); };
@@ -26,10 +30,13 @@ export async function transaccion(cambiar) {
     lectura.onsuccess = () => {
       try {
         const estado = lectura.result ?? nuevaBase();
+        const inicial = iniciarIntegracion(estado);
         const antes = estado.eventos.length;
         vencerReservas(estado, { ahora: Date.now(), clave: uid() });
         const resultado = cambiar?.(estado);
-        if (!lectura.result || cambiar || antes !== estado.eventos.length) tabla.put(estado, 'estado');
+        encolar(estado, antes);
+        const propagado = propagar(estado, Date.now());
+        if (inicial || cambiar || propagado || antes !== estado.eventos.length) tabla.put(estado, 'estado');
         salida = { estado, resultado };
       } catch (error) { fallo = error; tx.abort(); }
     };
@@ -39,9 +46,34 @@ export async function transaccion(cambiar) {
   });
 }
 
-export async function ejecutar(tipo, datos, clave = uid()) {
-  return transaccion(db => {
-    if (!Object.hasOwn(acciones, tipo)) throw new Error('Operación desconocida.');
-    return acciones[tipo](db, datos, { ahora: Date.now(), clave });
+export async function procesarRequest(request) {
+  const clave = request.headers.get('Idempotency-Key');
+  const solicitud = {metodo:request.method, ruta:new URL(request.url).pathname, clave};
+  if (request.method === 'POST') {
+    try { solicitud.datos = await request.json(); }
+    catch { return Response.json({codigo:'JSON_INVALIDO',mensaje:'El cuerpo debe ser JSON.',correlacion:clave},{status:400}); }
+  }
+  try {
+    const {resultado} = await transaccion(db => despachar(db, solicitud, Date.now()));
+    return Response.json(resultado.cuerpo,{status:resultado.estado});
+  } catch (error) {
+    if (error instanceof DOMException) throw error;
+    return Response.json({codigo:'REGLA_DE_NEGOCIO',mensaje:error.message,correlacion:clave},{status:422});
+  }
+}
+
+export async function solicitar({metodo,ruta,clave,datos}) {
+  const request = new Request(new URL(ruta, window.location.href), {
+    method:metodo, headers:{'Idempotency-Key':clave,'Content-Type':'application/json'},
+    body:metodo === 'POST' ? JSON.stringify(datos) : undefined
   });
+  const response = await procesarRequest(request);
+  const { estado } = await transaccion();
+  return {estado, resultado:{estado:response.status, cuerpo:await response.json()}};
+}
+
+export async function ejecutar(tipo, datos, clave = uid()) {
+  const { estado, resultado } = await solicitar({metodo:'POST', ruta:prefijo+endpoints[tipo][0], clave, datos});
+  if (resultado.estado >= 400) throw new Error(resultado.cuerpo.mensaje);
+  return {estado, resultado:resultado.cuerpo.id};
 }

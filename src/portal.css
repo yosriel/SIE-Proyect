@@ -40,3 +40,4 @@
 .pie { border-top:1px solid #cfdbd1; padding:1rem 0 2rem; font-size:.85rem; color:#536958; }
 @media(max-width:46rem) { .columnas,.producto {grid-template-columns:1fr;} .portal{margin-block:1.25rem;} .modulos,.subnav{gap:.15rem .6rem;} }
 .campo { display:grid; gap:.45rem; }
+.portal pre { white-space:pre-wrap; overflow-wrap:anywhere; background:#eef4ee; border-radius:.5rem; padding:.8rem; }

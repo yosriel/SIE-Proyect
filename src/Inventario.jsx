@@ -19,5 +19,5 @@ export default function Inventario({ db, vista, hacer }) {
       <Campo nombre="Cantidad" name="cantidad" type="number" min="1" max="99999" value={cantidad} onChange={e=>contar(e.target.value)}/>
       <Campo nombre="Motivo del movimiento" name="motivo" maxLength="100"/>
       <p>Disponible en origen · {disponible(s)} → {disponible(s) + (tipo === 'Ingreso' ? 1 : -1) * Number(cantidad)}</p>
-    </Formulario></Panel><Panel titulo="Historial de inventario"><Historial eventos={db.eventos.filter(e=>e.actor === 'Inventario')}/></Panel></div>;
+    </Formulario></Panel><Panel titulo="Historial de inventario">{db.integracion && <p><a href="?vista=integracion">Revisar sincronización y reintentar eventos</a></p>}<Historial eventos={db.eventos.filter(e=>e.actor === 'Inventario')}/></Panel></div>;
 }

@@ -4,6 +4,7 @@ import Retiro from './Retiro.jsx';
 import Inventario from './Inventario.jsx';
 import Devoluciones from './Devoluciones.jsx';
 import Sellers from './Sellers.jsx';
+import Integracion from './Integracion.jsx';
 import { Navegacion } from './ui.jsx';
 import { ejecutar, transaccion } from './dominio/almacen.js';
 import './portal.css';
@@ -13,6 +14,7 @@ const grupos = [
   { nombre: 'Inventario', componente: Inventario, enlaces: [['existencias','Consulta de existencias'],['movimientos','Movimientos']] },
   { nombre: 'Devoluciones', componente: Devoluciones, enlaces: [['validar','Validación de compra'],['devoluciones','Seguimiento de devolución']] },
   { nombre: 'Marketplace', componente: Sellers, enlaces: [['sellers','Registro de sellers'],['productos','Productos y despachos']] },
+  { nombre: 'Integración', componente: Integracion, enlaces: [['integracion','Monitor de integración']] },
 ];
 function ir(vista, id) {
   const url = new URL(window.location.href);
@@ -26,6 +28,8 @@ export default function App() {
   const [db, mostrar] = useState(null);
   const [error, fallar] = useState('');
   const canal = useRef(null);
+  const pendiente = useRef(false);
+  pendiente.current = db?.integracion.cola.some(m => Object.values(m.entregas).some(e => e.estado === 'Pendiente'));
   useEffect(() => {
     let activo = true;
     async function actualizar() {
@@ -38,12 +42,17 @@ export default function App() {
     }
     actualizar();
     const reloj = window.setInterval(actualizar, 30000);
+    const reintentos = window.setInterval(() => { if (pendiente.current) actualizar(); }, 1000);
     window.addEventListener('focus', actualizar);
-    return () => { activo = false; canal.current?.close(); clearInterval(reloj); window.removeEventListener('focus', actualizar); };
+    return () => { activo = false; canal.current?.close(); clearInterval(reloj); clearInterval(reintentos); window.removeEventListener('focus', actualizar); };
   }, []);
+  function actualizar(estado) {
+    mostrar(estado);
+    canal.current?.postMessage('cambio');
+  }
   async function hacer(tipo, datos, clave) {
     const {estado, resultado} = await ejecutar(tipo, datos, clave);
-    mostrar(estado); canal.current?.postMessage('cambio');
+    actualizar(estado);
     return resultado;
   }
   const titulo = grupo?.enlaces.find(([id])=>id===vista)?.[1];
@@ -55,6 +64,6 @@ export default function App() {
       <p className="rotulo">{grupo?.nombre || 'Navegación'}</p><h1>{titulo || 'Pantalla no encontrada'}</h1>
       {grupo && <Navegacion enlaces={grupo.enlaces} vista={vista}/>}
       {error ? <p role="alert" className="error">{error}</p> : !grupo ? <a href="?vista=retiro">Volver al catálogo</a> : !db ? <p>Cargando datos de demostración…</p> :
-        <Vista {...{db, vista, hacer, ir}} id={params.get('id')}/>}
+        <Vista {...{db, vista, hacer, ir, actualizar}} id={params.get('id')}/>}
     </main>}<footer className="pie">SIE Proyect · Datos ficticios guardados en este navegador</footer></>;
 }

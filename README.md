@@ -52,3 +52,35 @@ Las nueve pantallas del APF2 (sección 21) permiten recorrer los cuatro procesos
 Cada tienda parte de existencias de ejemplo. La Tienda A inicia con 10 unidades físicas y 2 reservadas previas. Las compras nuevas reservan existencias hasta la entrega. El plazo ilustrativo de retiro es de 48 horas y el de devolución de 30 días. El aviso de retiro, los pagos, las referencias a documentos y los despachos son simulados. Las pestañas del mismo origen comparten el estado. Para iniciar otro ensayo independiente se puede usar un perfil de navegador nuevo.
 
 Para probar las reglas de negocio ejecutar `npm test`. Para revisar la interfaz, repetir los recorridos a 390 y 1280 px y comprobar que el estado persiste al recargar.
+
+## Sprint 3 · Arquitectura e integración
+
+El menú **Integración** muestra las existencias proyectadas en Web y POS, el estado de la cola y la correlación de cada evento. El gateway se ejecuta dentro del navegador usando Request y Response y publica su [contrato OpenAPI v1](public/contrato-v1.json). Las ventas y reservas actualizan una base transaccional de demostración. Los canales Web y POS son consumidores simulados. Dos dispositivos mantienen bases independientes. Entre pestañas del mismo origen se usa IndexedDB y BroadcastChannel.
+
+```mermaid
+flowchart TD
+    React[Interfaz React] --> Gateway[Gateway v1]
+    Gateway --> Pedidos[Pedidos y retiro]
+    Gateway --> Inventario[Inventario]
+    Gateway --> Devoluciones[Devoluciones y reembolso]
+    Gateway --> Marketplace[Sellers y despachos]
+    Pedidos --> Base[(Transacción IndexedDB)]
+    Inventario --> Base
+    Devoluciones --> Base
+    Marketplace --> Base
+    Base --> Cola[Cola persistente de eventos]
+    Cola --> Web[Canal web]
+    Cola --> POS[Canal POS]
+```
+
+1. En **Integración**, leer el estado integrado y desconectar POS.
+2. Registrar una venta POS de prueba. El canal web muestra una unidad menos. El canal POS conserva la proyección anterior. Tras tres intentos, el primer mensaje bloqueado se marca como fallido.
+3. Pulsar **Repetir última solicitud**. La respuesta 200 devuelve la misma operación con `repetida: true`. El stock y el número de eventos se conservan. Conservar la correlación para buscar la misma operación en la traza.
+4. Reconectar POS y pulsar **Reintentar POS**. Los mensajes vuelven a procesarse en orden y ambas proyecciones coinciden. El cursor evita aplicar secuencias antiguas.
+5. Descargar el contrato desde el monitor. La consulta del estado y las once operaciones declaran sus entradas, respuestas y errores. Una clave reutilizada con otro cuerpo devuelve 409, y una regla de negocio incumplida devuelve 422.
+
+Las operaciones y sus eventos se guardan en una transacción. Los eventos anteriores del Sprint 2 quedan en el historial de negocio; al abrir una base existente, los canales se inicializan con el estado vigente. El historial del monitor comienza en ese momento.
+
+### Validación y entrega
+
+Desde la rama del incremento, ejecutar `npm ci`, `npm test` y `npm run build`. Servir `dist/` con `npm run preview`, probar los cuatro recorridos del Sprint 2 y la interrupción y recuperación del Sprint 3. Integrar la rama verificada en dev y promover el commit final a main. El prototipo admite publicación como archivos estáticos en un mismo origen. La rama Sprint1 documenta el incremento inicial y Sprint2 conserva los procesos antes de integrar el gateway.
