@@ -37,3 +37,7 @@ Usar `git switch Sprint1`, `git switch Sprint2` o `git switch Sprint3` para abri
 ## Demo del Sprint 1
 
 Abrir la página inicial, desplegar «Actividades y responsables del sprint» y comprobar las diez actividades SP1-01 a SP1-10 del APF2 (sección 17.1). Al cerrar el detalle vuelve a quedar visible el resumen. Repetir a 390 y 1280 px de ancho. Las capturas están en [celular](evidencias/celular.png) y [PC](evidencias/pc.png).
+
+## Sprint 2 en preparación
+
+La pantalla inicial «Consulta de stock» conserva la demostración de HU01 en React. Desde «Planificación» también se puede consultar el primer incremento. Para reproducir la prueba, solicitar 1, 8 y 9 unidades en Tienda A (stock 8) y 1 unidad en Tienda B (agotada). Al cambiar los datos debe desaparecer el resultado anterior. El navegador valida que la cantidad sea un entero positivo. Capturas de la consulta en [celular](evidencias/stock-celular.png) y [PC](evidencias/stock-pc.png).
