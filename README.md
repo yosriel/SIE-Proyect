@@ -40,11 +40,11 @@ Abrir la página inicial, desplegar «Actividades y responsables del sprint» y 
 
 ## Sprint 2 · Procesos omnicanal
 
-Las nueve pantallas del APF2 (sección 21) permiten recorrer los cuatro procesos en el menú principal. Los perfiles de cliente, tienda, finanzas y administrador son pasos de una simulación guiada. Usar únicamente documentos y expedientes ficticios. Los datos persisten en IndexedDB por navegador y origen.
+Las nueve pantallas del APF2 (sección 21) se recorren desde Comprar, Mis pedidos, Devoluciones y el menú Equipo de tienda. Los perfiles de cliente, tienda, finanzas y administrador son pasos de una simulación guiada. Usar únicamente documentos y expedientes ficticios. Los datos persisten en IndexedDB por navegador y origen.
 
 | Historia | Recorrido de demostración |
 | --- | --- |
-| HU01 Compra con retiro | Elegir Tienda A y 2 unidades. Consultar disponibilidad y confirmar con el documento ficticio 00000001. Copiar el número de pedido. En Entrega en tienda iniciar preparación y marcarlo listo. Consultar el código en Seguimiento del pedido y validar código y documento en Entrega. En otro pedido, probar Cancelar y comprobar la liberación de la reserva. |
+| HU01 Compra con retiro | En Comprar, elegir Tienda A, ajustar a 2 unidades y pulsar Reservar para retiro. Confirmar con el documento ficticio 00000001. En Mis pedidos, usar «Abrir este pedido en tienda». Allí iniciar preparación y marcarlo listo. Consultar el código en Seguimiento del pedido y validar código y documento en Entrega. En otro pedido, probar Cancelar y comprobar la liberación de la reserva. |
 | HU02 Inventario | Consultar el físico, reservado y disponible por ubicación. Registrar un ingreso, una venta POS o un traslado entre tiendas, revisar el saldo y el historial. La cuarentena se controla por separado. |
 | HU03 Devoluciones | Buscar el pedido entregado o PED-DEMO, seleccionar la compra, el motivo, la cantidad y la condición. Registrar y procesar el reembolso simulado. Una unidad dañada va a cuarentena. PED-VENCIDO permite demostrar el rechazo por plazo. |
 | HU04 Marketplace | Registrar razón social, RUC ficticio de 11 dígitos y referencia del expediente. Solicitar corrección con una observación, reenviar y aprobar. En Productos y despachos registrar un artículo, aprobar su publicación, simular un pedido y registrar el número de guía. |

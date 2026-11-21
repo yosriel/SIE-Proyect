@@ -16,7 +16,7 @@ export default function Devoluciones({ db, vista, hacer, ir, id }) {
       <Historial eventos={db.eventos.filter(e=>e.entidad === d.id)}/></article>)}</div></Panel>;
   const p = db.pedidos.find(x => x.id === seleccion);
   const error = p && elegibilidad(db,p);
-  return <div className="columnas"><Panel titulo="Localizar compra"><BuscarPedido pedidos={db.pedidos} elegir={id=>{elegir(id); contar('1');}}/></Panel>
+  return <div className="columnas"><Panel titulo="Localizar compra"><BuscarPedido pedidos={db.pedidos} seleccionado={seleccion} elegir={id=>{elegir(id); contar('1');}}/></Panel>
     <Panel titulo="Validar devolución">{!p ? <p>Selecciona la compra que deseas revisar.</p> : <>
       <h3>{p.id}</h3><p>Audífonos A · {p.estado} · {p.cantidad} unidades</p>
       {p.entrega && <p>Devolución hasta {fecha(p.entrega + 30 * DIA)}</p>}

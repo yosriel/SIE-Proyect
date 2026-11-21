@@ -14,17 +14,17 @@ const actividades = [
 export default function Planificacion() {
   return (
     <main className="pagina">
-      <p className="rotulo">Omni-SI Falabella · Sprint 1</p>
+      <p className="rotulo">Cuaderno de proyecto · Sprint 1</p>
       <h1>Planificación inicial</h1>
-      <p className="periodo">18–31 de agosto de 2026</p>
+      <p className="periodo">Del 18 al 31 de agosto de 2026</p>
       <section aria-labelledby="alcance">
         <h2 id="alcance">Alcance del proyecto</h2>
-        <p>Definir cómo se conectan la compra con retiro en tienda, el inventario,
+        <p>Seguimos el recorrido de una compra con retiro en tienda y su relación con el inventario,
           las devoluciones y la gestión de vendedores de Falabella Retail Perú.</p>
       </section>
       <details>
         <summary>Actividades y responsables del sprint</summary>
-        <p>El APF2 registra estas diez actividades como completadas en la sección 17.1.</p>
+        <p>El equipo completó estas diez actividades durante el primer sprint (APF2, sección 17.1).</p>
         <ul className="backlog">
           {actividades.map(([id, nombre, responsable]) => (
             <li key={id}>
