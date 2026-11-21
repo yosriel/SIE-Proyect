@@ -1,3 +1,4 @@
+import MapaProceso from "./MapaProceso.jsx";
 import { useState } from 'react';
 import Cuaderno, { Acta, Tabla } from './Cuaderno.jsx';
 import { caminos, recorrer } from './escenarios.js';
@@ -33,10 +34,11 @@ function contenido(n){
       ['Devoluciones','Compra entregada hace 30 días o menos y cantidad hasta el saldo pendiente','Buen estado repone stock. Dañado pasa a cuarentena. Cada devolución admite un reembolso.'],
       ['Seller','RUC único de once dígitos y referencia de expediente. Para publicar, el expediente debe estar aprobado.','La observación es obligatoria al rechazar o pedir correcciones.']
     ]}/>;
-    case 4:case 7:return <Ensayo/>;
+    case 4:return <Ensayo/>;
+    case 7:return <><MapaProceso procesos={procesos}/><Ensayo/></>;
     case 5:return <><p>Corte del APF2 · Los cuatro procesos figuran en progreso. Conteo del tablero: {['Completado','En progreso','Pendiente'].map(e=>e+' '+tablero.filter(f=>f[3]===e).length).join(' · ')}.</p><Tabla columnas={['Historia','Actividad','Responsable','Estado']} filas={tablero}/></>;
     case 6:return <><p>Revisar {procesos.map(p=>p[1]).join(', ')}. Deja por escrito los pendientes aceptados y la decisión del Product Owner.</p><Acta id="CP-S2-06" titulo="Acta del Sprint Review" decisiones={decisiones}/></>;
-    case 8:return <Tabla columnas={['Proceso','Carriles','Actividad entre carriles','Cierre']} filas={procesos.map(([hu,,c,,,a,z])=>[hu,c,a,z])}/>;
+    case 8:return <><MapaProceso procesos={procesos}/><Tabla columnas={['Proceso','Carriles','Actividad entre carriles','Cierre']} filas={procesos.map(([hu,,c,,,a,z])=>[hu,c,a,z])}/></>;
     case 9:return <Tabla columnas={['Proceso','Evento de inicio','Evento intermedio y consumidor','Fin']} filas={procesos.map(([hu,,,e,s,,z])=>[hu,e,s,z])}/>;
     case 10:return <><p>Abre el paso que quieras demostrar. La liberación por caducidad y los asientos de stock se ejecutan como operaciones internas.</p><Tabla columnas={['Historia','Paso y pantalla']} filas={pantallas.map(([hu,t,v])=>[hu,<a href={'?vista='+v}>{t}</a>])}/></>;
   }
