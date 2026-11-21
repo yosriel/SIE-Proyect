@@ -30,6 +30,6 @@ npm ci
 npm run dev
 ```
 
-Abre la dirección que imprime Vite. Ejecuta `npm test` para comprobar las cinco pruebas de negocio. Para probar la versión compilada, ejecuta `npm run build` y luego `npm run preview`. [Pruebas de procesos](pruebas/procesos.test.js) · [Compra en celular](evidencias/stock-celular.png) · [Compra en PC](evidencias/stock-pc.png)
+Abre la dirección que imprime Vite. Ejecuta `npm test` para comprobar las ocho pruebas de planificación, procesos y recorridos. Para probar la versión compilada, ejecuta `npm run build` y luego `npm run preview`. [Pruebas de procesos](pruebas/procesos.test.js) · [Compra en celular](evidencias/stock-celular.png) · [Compra en PC](evidencias/stock-pc.png)
 
 En **Equipo de tienda → Recorrer los cuatro procesos** puedes consultar las reglas y los responsables, abrir las nueve pantallas, ejecutar 16 recorridos aislados y registrar la revisión de cada proceso. Los diez casos del Sprint 2 conservan el tablero histórico del APF2.
