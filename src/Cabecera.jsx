@@ -3,6 +3,7 @@ import Marca from './Marca.jsx';
 
 const cliente = [['retiro','Comprar'], ['seguimiento','Mis pedidos'], ['validar','Devoluciones']];
 const equipo = [
+  ['procesos','Recorrer los cuatro procesos'],
   ['entrega','Preparar y entregar pedidos'],
   ['existencias','Revisar el inventario'],
   ['sellers','Administrar vendedores'],
