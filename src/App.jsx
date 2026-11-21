@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Cabecera from './Cabecera.jsx';
 import Planificacion from './Planificacion.jsx';
 import Retiro from './Retiro.jsx';
 import Inventario from './Inventario.jsx';
@@ -57,13 +58,14 @@ export default function App() {
   }
   const titulo = grupo?.enlaces.find(([id])=>id===vista)?.[1];
   const Vista = grupo?.componente;
-  return <><header className="cabecera"><div><a href="?vista=retiro" className="logo">Omni-SI <span>Falabella</span></a><span>Prototipo académico</span></div></header>
-    <nav className="modulos" aria-label="Módulos">{grupos.map(g=><a key={g.nombre} href={'?vista='+g.enlaces[0][0]} aria-current={g===grupo?'page':undefined}>{g.nombre}</a>)}
-      <a href="?vista=planificacion" aria-current={vista==='planificacion'?'page':undefined}>Planificación</a></nav>
+  const producto = vista === 'retiro';
+  return <><Cabecera vista={vista} integracion={grupos.some(g=>g.enlaces[0][0]==='integracion')}/>
     {vista === 'planificacion' ? <Planificacion/> : <main className="portal">
-      <p className="rotulo">{grupo?.nombre || 'Navegación'}</p><h1>{titulo || 'Pantalla no encontrada'}</h1>
-      {grupo && <Navegacion enlaces={grupo.enlaces} vista={vista}/>}
-      {error ? <p role="alert" className="error">{error}</p> : !grupo ? <a href="?vista=retiro">Volver al catálogo</a> : !db ? <p>Cargando datos de demostración…</p> :
+      {producto ? <p className="ruta-producto">Tienda <span>/</span> Audio <span>/</span> Audífonos</p> : <>
+        <p className="rotulo">{grupo?.nombre || 'Tienda'}</p><h1>{titulo || 'Pantalla no encontrada'}</h1>
+        {grupo && grupo.componente!==Retiro && grupo.enlaces.length>1 && <Navegacion enlaces={grupo.enlaces} vista={vista}/>}
+      </>}
+      {error ? <p role="alert" className="error">{error}</p> : !grupo ? <a href="?vista=retiro">Volver a comprar</a> : !db ? <p>Cargando la tienda…</p> :
         <Vista {...{db, vista, hacer, ir, actualizar}} id={params.get('id')}/>}
-    </main>}<footer className="pie">SIE Proyect · Datos ficticios guardados en este navegador</footer></>;
+    </main>}<footer className="pie"><strong>Omni-SI Falabella</strong><span>Proyecto académico · Datos de ejemplo en este navegador</span></footer></>;
 }

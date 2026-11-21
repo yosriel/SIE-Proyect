@@ -5,7 +5,7 @@ import { Campo, Formulario, Opciones, Panel } from './ui.jsx';
 
 function Revision({ hacer, tipo, id, estados }) {
   const [estado, elegir] = useState(estados[0]);
-  return <Formulario boton="Aplicar decisión" confirmar={'¿Registrar la decisión «' + estado + '»?'} accion={a=>hacer(tipo, { ...a, id, estado })}>
+  return <Formulario boton="Aplicar decisión" mensaje="La revisión quedó guardada." confirmar={'¿Registrar la decisión «' + estado + '»?'} accion={a=>hacer(tipo, { ...a, id, estado })}>
     <Campo nombre="Decisión"><Opciones valores={estados} value={estado} onChange={e=>elegir(e.target.value)}/></Campo>
     {['Por corregir','Rechazado'].includes(estado) && <Campo nombre="Observación" name="observacion" maxLength="100"/>}
   </Formulario>;
@@ -21,12 +21,13 @@ export default function Sellers({ db, vista, hacer }) {
   if (vista === 'sellers') return <div className="columnas"><Panel titulo="Alta de vendedor"><Expediente hacer={hacer}/></Panel>
     <Panel titulo="Revisión de expedientes">{!db.sellers.length && <p>Aún no se han recibido expedientes.</p>}
       {db.sellers.map(s=><article key={s.id}><h3>{s.nombre}</h3><p>{s.ruc} · {s.documento}</p><p className="estado">{s.estado}</p>
+        {s.estado === 'Aprobado' && <p><a href={'?vista=productos&seller='+encodeURIComponent(s.id)}>Registrar un producto de {s.nombre}</a></p>}
         {s.observacion && <p>{s.observacion}</p>}
         {s.estado === 'En revisión' && <Revision {...{hacer}} tipo="revisarSeller" id={s.id} estados={['Aprobado','Por corregir','Rechazado']}/>}
         {s.estado === 'Por corregir' && <Expediente hacer={hacer} seller={s}/>}</article>)}</Panel></div>;
   const aprobados = db.sellers.filter(s=>s.estado === 'Aprobado');
-  return <><div className="columnas"><Panel titulo="Registrar producto">{aprobados.length ? <Formulario boton="Enviar a revisión" accion={a=>hacer('publicar',a)}>
-    <Campo nombre="Seller"><select name="seller">{aprobados.map(s=><option key={s.id} value={s.id}>{s.nombre}</option>)}</select></Campo>
+  return <><div className="columnas"><Panel titulo="Registrar producto">{aprobados.length ? <Formulario boton="Enviar a revisión" mensaje="El producto ya está en revisión." accion={a=>hacer('publicar',a)}>
+    <Campo nombre="Seller"><select name="seller" defaultValue={new URLSearchParams(window.location.search).get('seller') || aprobados[0].id}>{aprobados.map(s=><option key={s.id} value={s.id}>{s.nombre}</option>)}</select></Campo>
     <Campo nombre="Nombre del producto" name="nombre"/><Campo nombre="Categoría"><Opciones name="categoria" valores={categorias}/></Campo>
     <Campo nombre="Precio en soles" type="number" step=".01" min=".01" max="999999.99" name="precio"/>
     <Campo nombre="Unidades" type="number" min="1" max="99999" name="cantidad"/>
