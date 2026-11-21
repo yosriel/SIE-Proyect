@@ -1,39 +1,25 @@
-# Omni-SI Falabella
+# Omni-SI Falabella · Sprint 1
 
-Web responsiva del proyecto académico SIE Proyect para el punto 8 del APF3. Los tres sprints usan React en el navegador. Vite ejecuta el servidor de desarrollo y compila la aplicación estática.
+## Qué se hizo
 
-## Ejecutar desde una copia limpia
+El primer sprint definió el alcance del proyecto, sus requisitos iniciales y la organización del equipo. Para el punto 8 del APF3, esta rama presenta ese trabajo en un **cuaderno de planificación** que se puede consultar desde celular o PC.
 
-Versiones probadas: Node.js 26.13.1, npm 11.20.0, React y React DOM 19.3.0, Vite 8.3.4. El proyecto requiere Node.js 22.12 o posterior. Las dependencias están fijadas en el archivo de bloqueo.
+- Se creó la base de la aplicación con React y Vite y se diseñó la vista **Planificación inicial** con la identidad visual de Omni-SI Falabella.
+- Se incorporaron el periodo del 18 al 31 de agosto de 2026 y el alcance de los procesos de retiro, inventario, devoluciones y vendedores.
+- Se implementó una lista desplegable con las diez actividades de la sección 17.1 del APF2. Cada fila muestra su código, la actividad y el responsable, desde el Project Charter hasta la validación de la planificación.
+
+## Ejecutar esta versión
+
+Requiere Node.js 22.12 o posterior y npm. Esta rama utiliza React 19.3.0 y Vite 8.3.4.
 
 ```sh
+git switch Sprint1
 npm ci
 npm run dev
 ```
 
-Abrir la dirección local que imprime Vite. Para probar desde un celular conectado a la misma red de confianza, ejecutar `npm run dev -- --host 0.0.0.0` y abrir la dirección de red que imprime Vite.
+Abre la dirección que imprime Vite. Para comprobar la compilación estática, ejecuta `npm run build` y luego `npm run preview`.
 
-## Compilar y verificar
+## Cómo verificar el incremento
 
-```sh
-npm run build
-npm run preview
-```
-
-El resultado está en `dist/`. Abrir la dirección que imprime la vista previa y comprobar el incremento en celular y en PC. Con acceso al registro de npm, ejecutar `npm audit` para revisar dependencias directas y transitivas.
-
-## Trabajar por sprint
-
-| Rama | Propósito |
-| --- | --- |
-| main | Entregas aceptadas. |
-| dev | Base común e integración de los incrementos revisados. |
-| Sprint1 | Inicio y planificación del proyecto. |
-| Sprint2 | Modelado de procesos omnicanal y demostración de sus flujos. |
-| Sprint3 | Arquitectura e integración. |
-
-Usar `git switch Sprint1`, `git switch Sprint2` o `git switch Sprint3` para abrir una rama. Cada incremento parte del anterior y se conserva en su rama para la exposición. Tras la revisión, integrar en dev. Actualizar las ramas reservadas desde dev antes de continuar su implementación. La fuente académica es APF2, secciones 16, 17 y 21.
-
-## Demo del Sprint 1
-
-Abrir la página inicial, desplegar «Actividades y responsables del sprint» y comprobar las diez actividades SP1-01 a SP1-10 del APF2 (sección 17.1). Al cerrar el detalle vuelve a quedar visible el resumen. Repetir a 390 y 1280 px de ancho. Las capturas están en [celular](evidencias/celular.png) y [PC](evidencias/pc.png).
+En **Planificación inicial**, abre **Actividades y responsables del sprint**. Comprueba que aparecen diez actividades, de `SP1-01` a `SP1-10`, cada una con su responsable. Cierra el detalle y repite el recorrido con un ancho de 390 px y otro de 1280 px. La verificación de esta rama es manual. [Vista en celular](evidencias/celular.png) · [Vista en PC](evidencias/pc.png)
