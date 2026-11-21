@@ -1,30 +1,45 @@
-# Omni-SI Falabella · Sprint 3
+# Omni-SI Falabella
 
-## Qué se hizo
+Omni-SI Falabella es una aplicación web académica que simula la operación omnicanal de Falabella Retail Perú. Desde un celular o una PC puedes seguir una compra desde la reserva hasta el retiro en tienda y ver cómo cambia el inventario al entregar, cancelar o devolver el pedido.
 
-Este sprint conectó los procesos de tienda con un **gateway local y dos canales simulados, Web y POS**. El incremento permite observar qué ocurre con una venta cuando un canal se desconecta y cómo recupera el saldo al volver a conectarse.
+**Para probarla sin instalar dependencias**, descarga el ZIP, extrae su contenido, abre `PRESENTACION.html` y selecciona **Abrir la tienda**. [Descargar la demostración](entrega/Omni-SI-Falabella-APF3.zip)
 
-- **HU05 · Arquitectura modular.** Se incorporó un gateway que dirige las solicitudes a los módulos de pedidos, inventario, devoluciones y marketplace. Se publicó un contrato OpenAPI v1 para la consulta de estado y once operaciones. [Consultar el contrato](public/contrato-v1.json)
-- **HU06 · Integración.** Se añadió una cola persistente de eventos. Cada canal conserva su secuencia de procesamiento, y la correlación permite seguir una operación desde la solicitud hasta su entrega. Repetir una solicitud con la misma clave y los mismos datos devuelve el resultado anterior.
-- **Monitor de canales.** Se incorporó la pantalla **Equipo de tienda → Comprobar los canales** para comparar saldos, simular desconexiones, consultar intentos fallidos y reprocesar eventos. Al abrir una base del Sprint 2, los canales se inicializan a partir de sus existencias y pedidos.
+## Qué puedes hacer
 
-## Cómo demostrar el incremento
+| Área | Funciones |
+| --- | --- |
+| Compras y retiros | Consultar existencias por tienda, reservar unidades y seguir el pedido en **Mis pedidos**. El personal de tienda puede prepararlo y entregarlo tras validar el código de retiro y el documento ficticio. |
+| Inventario | Consultar stock físico, reservado y disponible por ubicación. Registrar ingresos, ventas en caja y traslados, y revisar el historial de movimientos. |
+| Devoluciones | Buscar una compra, comprobar el plazo y las unidades disponibles para devolución, registrar el estado del producto y tramitar un reembolso simulado. |
+| Marketplace | Registrar vendedores, revisar expedientes y productos, aprobar publicaciones y registrar el despacho con su número de guía. |
+| Integración | Comparar las existencias de la web y el punto de venta (POS), simular una desconexión y reintentar la entrega de eventos. |
+| Planificación | Consultar el alcance del proyecto, las actividades y sus responsables en **Equipo de tienda → Ver la planificación**. |
 
-1. Con los datos iniciales, abre **Comprobar los canales**. Web y POS muestran 8 unidades disponibles en Tienda A.
-2. Desconecta POS y pulsa **Registrar venta POS de prueba**. Web baja a 7 y POS conserva 8. Tras tres intentos fallidos, el historial identifica el evento pendiente de recuperación.
-3. Pulsa **Repetir última solicitud**. Comprueba que Web sigue en 7. En la respuesta técnica aparece `repetida: true`.
-4. Reconecta POS y pulsa **Reintentar POS**. Ambos canales terminan con 7 unidades y el evento figura como entregado. [Canal interrumpido](evidencias/canal-interrumpido.png) · [Canales conciliados](evidencias/canales-conciliados.png)
+## Un recorrido para empezar
 
-## Ejecutar y probar
+En **Comprar**, elige **Tienda A**, selecciona dos unidades y pulsa **Reservar para retiro**. Confirma con el documento ficticio `00000001`. En **Mis pedidos**, abre el pedido en tienda, inicia la preparación y márcalo como listo. El código aparece en **Mis pedidos**. Úsalo junto con el documento para confirmar la entrega. En **Equipo de tienda → Revisar el inventario** puedes comprobar cómo la reserva primero compromete las unidades y la entrega después reduce el stock físico.
 
-Requiere Node.js 22.12 o posterior y npm. Esta rama utiliza React 19.3.0 y Vite 8.3.4.
+## Datos y arquitectura
+
+La interfaz usa React y Vite. El gateway local aplica las reglas de pedidos, inventario, devoluciones y marketplace. IndexedDB conserva las operaciones al recargar la página y las pestañas del mismo origen comparten los cambios. Cada dispositivo mantiene su propia base. Los pagos, los canales comerciales y los despachos se simulan con datos ficticios. [Contrato OpenAPI v1](public/contrato-v1.json)
+
+## Desarrollo local
+
+Se requiere Node.js 22.12 o posterior y npm. Las versiones probadas son Node.js 26.13.1 y npm 11.20.0. El proyecto utiliza React 19.3.0 y Vite 8.3.4.
+
+Desde la raíz del repositorio, instala las dependencias y abre la dirección que imprime Vite.
 
 ```sh
-git switch Sprint3
 npm ci
 npm run dev
 ```
 
-Ejecuta `npm test` para comprobar las cinco pruebas de negocio y las cuatro de integración. Estas últimas cubren el contrato, las solicitudes repetidas, la recuperación del canal y la migración de datos. Para probar la compilación estática, ejecuta `npm run build` y luego `npm run preview`. [Pruebas de integración](pruebas/integracion.test.js)
+Para probar desde un celular conectado a la misma red, ejecuta `npm run dev -- --host 0.0.0.0` y abre la dirección de red que muestra Vite.
 
-El cierre del sprint incluye las tres versiones ejecutables y el documento del punto 8 del APF3. [Descargar la demostración](entrega/Omni-SI-Falabella-APF3.zip) · [Abrir el informe en Word](entrega/Punto-8-APF3.docx)
+| Comando | Resultado |
+| --- | --- |
+| `npm test` | Ejecuta las pruebas de procesos de negocio e integración. |
+| `npm run build` | Genera la aplicación estática en `dist/`. |
+| `npm run preview` | Sirve la compilación local después del build. |
+
+El informe del punto 8 del APF3 incluye las capturas y el alcance de la demostración. [Abrir el informe en Word](entrega/Punto-8-APF3.docx)
