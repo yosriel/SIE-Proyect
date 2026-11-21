@@ -23,3 +23,5 @@ Abre la dirección que imprime Vite. Para comprobar la compilación estática, e
 ## Cómo verificar el incremento
 
 En **Planificación inicial**, abre **Actividades y responsables del sprint**. Comprueba que aparecen diez actividades, de `SP1-01` a `SP1-10`, cada una con su responsable. Cierra el detalle y repite el recorrido con un ancho de 390 px y otro de 1280 px. La verificación de esta rama es manual. [Vista en celular](evidencias/celular.png) · [Vista en PC](evidencias/pc.png)
+
+En **Revisar la planificación** puedes consultar las doce historias, contrastar los requisitos, recalcular los 94 puntos y registrar la decisión y el acta del patrocinador para cada documento. El selector reproduce los diez casos del Sprint 1.
