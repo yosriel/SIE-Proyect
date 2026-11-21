@@ -46,11 +46,11 @@ En Sprint1, abrir la página inicial. En las versiones posteriores, elegir Plani
 
 ## Sprint 2 · Procesos omnicanal
 
-Las nueve pantallas del APF2 (sección 21) permiten recorrer los cuatro procesos en el menú principal. Los perfiles de cliente, tienda, finanzas y administrador son pasos de una simulación guiada. Usar únicamente documentos y expedientes ficticios. Los datos persisten en IndexedDB por navegador y origen.
+Las nueve pantallas del APF2 (sección 21) se recorren desde Comprar, Mis pedidos, Devoluciones y el menú Equipo de tienda. Los perfiles de cliente, tienda, finanzas y administrador son pasos de una simulación guiada. Usar únicamente documentos y expedientes ficticios. Los datos persisten en IndexedDB por navegador y origen.
 
 | Historia | Recorrido de demostración |
 | --- | --- |
-| HU01 Compra con retiro | Elegir Tienda A y 2 unidades. Consultar disponibilidad y confirmar con el documento ficticio 00000001. Copiar el número de pedido. En Entrega en tienda iniciar preparación y marcarlo listo. Consultar el código en Seguimiento del pedido y validar código y documento en Entrega. En otro pedido, probar Cancelar y comprobar la liberación de la reserva. |
+| HU01 Compra con retiro | En Comprar, elegir Tienda A, ajustar a 2 unidades y pulsar Reservar para retiro. Confirmar con el documento ficticio 00000001. En Mis pedidos, usar «Abrir este pedido en tienda». Allí iniciar preparación y marcarlo listo. Consultar el código en Seguimiento del pedido y validar código y documento en Entrega. En otro pedido, probar Cancelar y comprobar la liberación de la reserva. |
 | HU02 Inventario | Consultar el físico, reservado y disponible por ubicación. Registrar un ingreso, una venta POS o un traslado entre tiendas, revisar el saldo y el historial. La cuarentena se controla por separado. |
 | HU03 Devoluciones | Buscar el pedido entregado o PED-DEMO, seleccionar la compra, el motivo, la cantidad y la condición. Registrar y procesar el reembolso simulado. Una unidad dañada va a cuarentena. PED-VENCIDO permite demostrar el rechazo por plazo. |
 | HU04 Marketplace | Registrar razón social, RUC ficticio de 11 dígitos y referencia del expediente. Solicitar corrección con una observación, reenviar y aprobar. En Productos y despachos registrar un artículo, aprobar su publicación, simular un pedido y registrar el número de guía. |
@@ -61,7 +61,7 @@ Para probar las reglas de negocio ejecutar `npm test`. Para revisar la interfaz,
 
 ## Sprint 3 · Arquitectura e integración
 
-El menú **Integración** muestra las existencias proyectadas en Web y POS, el estado de la cola y la correlación de cada evento. El gateway se ejecuta dentro del navegador usando Request y Response y publica su [contrato OpenAPI v1](public/contrato-v1.json). Las ventas y reservas actualizan una base transaccional de demostración. Los canales Web y POS son consumidores simulados. Dos dispositivos mantienen bases independientes. Entre pestañas del mismo origen se usa IndexedDB y BroadcastChannel.
+En **Equipo de tienda → Comprobar los canales** se muestran las existencias proyectadas en Web y POS, el estado de la cola y la correlación de cada evento. El gateway se ejecuta dentro del navegador usando Request y Response y publica su [contrato OpenAPI v1](public/contrato-v1.json). Las ventas y reservas actualizan una base transaccional de demostración. Los canales Web y POS son consumidores simulados. Dos dispositivos mantienen bases independientes. Entre pestañas del mismo origen se usa IndexedDB y BroadcastChannel.
 
 ```mermaid
 flowchart TD
@@ -79,7 +79,7 @@ flowchart TD
     Cola --> POS[Canal POS]
 ```
 
-1. En **Integración**, leer el estado integrado y desconectar POS.
+1. En **Comprobar los canales**, leer el estado integrado y desconectar POS.
 2. Registrar una venta POS de prueba. El canal web muestra una unidad menos. El canal POS conserva la proyección anterior. Tras tres intentos, el primer mensaje bloqueado se marca como fallido.
 3. Pulsar **Repetir última solicitud**. La respuesta 200 devuelve la misma operación con `repetida: true`. El stock y el número de eventos se conservan. Conservar la correlación para buscar la misma operación en la traza.
 4. Reconectar POS y pulsar **Reintentar POS**. Los mensajes vuelven a procesarse en orden y ambas proyecciones coinciden. El cursor evita aplicar secuencias antiguas.
