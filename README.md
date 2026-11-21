@@ -13,7 +13,13 @@ Omni-SI Falabella es una aplicación web académica que simula la operación omn
 | Devoluciones | Buscar una compra, comprobar el plazo y las unidades disponibles para devolución, registrar el estado del producto y tramitar un reembolso simulado. |
 | Marketplace | Registrar vendedores, revisar expedientes y productos, aprobar publicaciones y registrar el despacho con su número de guía. |
 | Integración | Comparar las existencias de la web y el punto de venta (POS), simular una desconexión y reintentar la entrega de eventos. |
-| Planificación | Consultar el alcance del proyecto, las actividades y sus responsables en **Equipo de tienda → Ver la planificación**. |
+| Planificación | Revisar backlog, requisitos, épicas, puntos y cronograma en **Equipo de tienda → Ver la planificación**. Registrar decisiones y actas firmadas por documento. |
+
+## Revisar los incrementos
+
+En **Equipo de tienda** puedes abrir **Ver la planificación** (Sprint 1), **Recorrer los cuatro procesos** (Sprint 2) o **Probar los contratos** (Sprint 3). Elige el caso del plan por su código. El cuaderno conserva las observaciones y las decisiones en el navegador y permite descargar el registro.
+
+Los 16 recorridos de negocio y las 12 operaciones del laboratorio usan datos aislados. El monitor de integración muestra los cambios de la tienda de demostración.
 
 ## Un recorrido para empezar
 
@@ -38,7 +44,7 @@ Para probar desde un celular conectado a la misma red, ejecuta `npm run dev -- -
 
 | Comando | Resultado |
 | --- | --- |
-| `npm test` | Ejecuta las pruebas de procesos de negocio e integración. |
+| `npm test` | Ejecuta las 15 pruebas de planificación, procesos, integración y laboratorio. |
 | `npm run build` | Genera la aplicación estática en `dist/`. |
 | `npm run preview` | Sirve la compilación local después del build. |
 

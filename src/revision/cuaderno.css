@@ -1,0 +1,19 @@
+.cuaderno {margin:2rem 0 3rem;min-width:0;color:#23382b}
+.cuaderno h3 {font-size:1.38rem;line-height:1.25;margin:1.2rem 0 .8rem}
+.cuaderno label {display:grid;gap:.4rem;font-weight:600;margin:.75rem 0}
+.cuaderno select,.cuaderno input,.cuaderno textarea {min-width:0;width:100%;max-width:55rem;padding:.65rem;border:1px solid #899d90;border-radius:.5rem;background:white;color:#203729;font:inherit}
+.cuaderno textarea {min-height:5rem}
+.cuaderno button {border:1px solid #34583e;background:#254d35;color:white;border-radius:.55rem;padding:.58rem .95rem;margin:.2rem .35rem .2rem 0;font:inherit}
+.cuaderno .hoja {border-top:2px solid #91b776;margin-top:1rem}
+.cuaderno details {margin:.65rem 0;padding:.7rem .3rem;border-bottom:1px solid #d7e0d8}
+.cuaderno summary {font-weight:650;color:#254a33}
+.cuaderno p,.cuaderno li {line-height:1.55}
+.tabla-cuaderno {overflow-x:auto;max-width:100%;margin:.85rem 0}
+.tabla-cuaderno table {border-collapse:collapse;width:100%;font-size:.95rem}
+.tabla-cuaderno td,.tabla-cuaderno th {border-bottom:1px solid #d3ded5;padding:.6rem;text-align:left;vertical-align:top}
+.tabla-cuaderno th {background:#eef4e9}
+.cuaderno pre {overflow:auto;max-width:100%;background:#f2f5ef;padding:.8rem}
+@media(max-width:40rem){.cuaderno select{font-size:1rem}.tabla-cuaderno td{min-width:6rem}.cuaderno h3{font-size:1.2rem}}
+.ruta-proceso {list-style-position:inside;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:.6rem}
+.ruta-proceso li {background:#f1f6eb;border-radius:.6rem;padding:.7rem}
+.ruta-proceso a {display:block;margin-top:.3rem}

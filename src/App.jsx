@@ -1,3 +1,5 @@
+import RevisionTecnica from "./revision/RevisionTecnica.jsx";
+import RevisionProcesos from "./revision/RevisionProcesos.jsx";
 import { useEffect, useRef, useState } from 'react';
 import Cabecera from './Cabecera.jsx';
 import Planificacion from './Planificacion.jsx';
@@ -11,6 +13,8 @@ import { ejecutar, transaccion } from './dominio/almacen.js';
 import './portal.css';
 
 const grupos = [
+  { nombre: "Arquitectura e integración", componente: RevisionTecnica, enlaces: [["laboratorio","Laboratorio del Sprint 3"]] },
+  { nombre: "Procesos de tienda", componente: RevisionProcesos, enlaces: [["procesos","Recorridos del Sprint 2"]] },
   { nombre: 'Retiro en tienda', componente: Retiro, enlaces: [['retiro','Producto y disponibilidad'],['seguimiento','Seguimiento del pedido'],['entrega','Entrega en tienda']] },
   { nombre: 'Inventario', componente: Inventario, enlaces: [['existencias','Consulta de existencias'],['movimientos','Movimientos']] },
   { nombre: 'Devoluciones', componente: Devoluciones, enlaces: [['validar','Validación de compra'],['devoluciones','Seguimiento de devolución']] },

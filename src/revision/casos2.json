@@ -1,0 +1,52 @@
+[
+  {
+    "id": "CP-S2-01",
+    "nombre": "Coherencia entre los cuatro procesos: la salida de uno es la entrada del siguiente",
+    "esperado": "Cada proceso declara qué recibe y qué entrega y los cuatro encajan sin huecos ni solapes; toda discrepancia se registra como defecto del modelo."
+  },
+  {
+    "id": "CP-S2-02",
+    "nombre": "Revisión de los cuatro procesos con el Product Owner",
+    "esperado": "Hay un acta por proceso, con observaciones y decisión registradas; sin aprobación registrada la historia no se acepta."
+  },
+  {
+    "id": "CP-S2-03",
+    "nombre": "Reglas de negocio declaradas y verificables: stock, plazo de devolución y criterios de aprobación de seller",
+    "esperado": "Cada regla declara condición, valor límite y efecto observable; ninguna regla queda sin valor límite definido."
+  },
+  {
+    "id": "CP-S2-04",
+    "nombre": "Cobertura de los escenarios excepcionales de los cuatro procesos",
+    "esperado": "Cada proceso tiene al menos tres rutas de excepción con su responsable; ninguna excepción termina en un estado indefinido."
+  },
+  {
+    "id": "CP-S2-05",
+    "nombre": "Conciliación del avance real del sprint",
+    "esperado": "Los conteos del tablero coinciden con 9 actividades completadas, 8 en progreso y 23 pendientes; los cuatro procesos se declaran «en progreso» y el informe no afirma el cierre del sprint."
+  },
+  {
+    "id": "CP-S2-06",
+    "nombre": "Aceptación del Sprint 2 en la Sprint Review",
+    "esperado": "El acta registra los cuatro procesos revisados, los pendientes aceptados por escrito y la posición del Product Owner."
+  },
+  {
+    "id": "CP-S2-07",
+    "nombre": "Cobertura de caminos de los cuatro modelos BPMN",
+    "esperado": "El 100 por ciento de las compuertas declara su condición y cada camino alcanzable está recorrido por al menos un caso; ningún camino queda sin salida."
+  },
+  {
+    "id": "CP-S2-08",
+    "nombre": "Cobertura de carriles y responsabilidades del modelo",
+    "esperado": "Toda actividad está en un carril, todo carril tiene al menos una actividad y ninguna actividad queda sin responsable."
+  },
+  {
+    "id": "CP-S2-09",
+    "nombre": "Cobertura de eventos del modelo",
+    "esperado": "Todo evento de inicio tiene su cierre, todo evento intermedio tiene consumidor declarado y no queda ningún evento huérfano."
+  },
+  {
+    "id": "CP-S2-10",
+    "nombre": "Correspondencia entre el modelo BPMN y las nueve pantallas del prototipo",
+    "esperado": "Cada paso que exige interacción del usuario tiene su pantalla; los pasos sin pantalla son de backoffice y están justificados."
+  }
+]

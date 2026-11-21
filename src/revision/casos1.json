@@ -1,0 +1,52 @@
+[
+  {
+    "id": "CP-S1-01",
+    "nombre": "Verificar que el Project Charter declara los siete elementos mínimos",
+    "esperado": "Los siete elementos están presentes y fechados. Un elemento ausente se registra como defecto de severidad 2 y bloquea el cierre del sprint."
+  },
+  {
+    "id": "CP-S1-02",
+    "nombre": "Verificar que la matriz de interesados clasifica a cada interesado por poder e interés",
+    "esperado": "Cada interesado aparece en una sola clase con poder, interés, estrategia y responsable declarados; no queda ninguna fila sin estrategia y ningún rol clave está duplicado."
+  },
+  {
+    "id": "CP-S1-03",
+    "nombre": "Verificar que los requerimientos iniciales llegaron al Product Backlog sin pérdida",
+    "esperado": "Cero requerimientos sin historia y cero historias sin requerimiento de origen; toda diferencia queda justificada por escrito con su motivo."
+  },
+  {
+    "id": "CP-S1-04",
+    "nombre": "Verificar la priorización de las doce historias contra el criterio declarado",
+    "esperado": "Doce de doce historias tienen prioridad Alta, Media o Baja con la justificación del criterio aplicada; ninguna historia queda sin prioridad y ninguna diferencia queda sin explicación."
+  },
+  {
+    "id": "CP-S1-05",
+    "nombre": "Verificar la coherencia del cronograma de sprints",
+    "esperado": "No hay solapes ni huecos entre sprint y sprint y el último cierra antes de la entrega. La discrepancia entre el Charter, que declara siete sprints, el cronograma, que describe seis, y el backlog, que asigna historias hasta el Sprint 6, se reporta remitiendo a la observación O2."
+  },
+  {
+    "id": "CP-S1-06",
+    "nombre": "Prueba de aceptación de la planificación inicial (SP1-10)",
+    "esperado": "El acta registra los seis documentos revisados, sus observaciones y la decisión sobre cada uno. Sin decisión registrada, el sprint no se considera cerrado."
+  },
+  {
+    "id": "CP-S1-07",
+    "nombre": "Cobertura de las ocho épicas por el Product Backlog",
+    "esperado": "E01 a E08 tienen al menos una historia cada una; toda historia tiene una única épica principal y ninguna épica queda vacía."
+  },
+  {
+    "id": "CP-S1-08",
+    "nombre": "Cobertura de las tres unidades del sílabo en el cronograma",
+    "esperado": "Cada sprint declara la unidad que cubre y las tres unidades tienen al menos un sprint asignado; un sprint sin unidad se registra como defecto de planificación."
+  },
+  {
+    "id": "CP-S1-09",
+    "nombre": "Recálculo de los Story Points del backlog",
+    "esperado": "La suma declarada coincide con la suma de las filas, 94 SP, y con la suma por sprint; una diferencia distinta de cero se registra como defecto."
+  },
+  {
+    "id": "CP-S1-10",
+    "nombre": "Integridad referencial del Product Backlog",
+    "esperado": "Doce identificadores únicos, cero referencias a historias inexistentes y cero historias sin criterio de aceptación."
+  }
+]
