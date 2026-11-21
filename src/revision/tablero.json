@@ -1,0 +1,242 @@
+[
+  [
+    "HU01",
+    "Levantar requerimientos del proceso actual",
+    "Franco Vallejos",
+    "Completado"
+  ],
+  [
+    "HU01",
+    "Identificar actores involucrados",
+    "Franco Vallejos",
+    "Completado"
+  ],
+  [
+    "HU01",
+    "Elaborar diagrama AS-IS",
+    "Franco Vallejos",
+    "Completado"
+  ],
+  [
+    "HU01",
+    "Diseñar proceso TO-BE",
+    "Franco Vallejos",
+    "En progreso"
+  ],
+  [
+    "HU01",
+    "Modelar BPMN de compra online",
+    "Franco Vallejos",
+    "En progreso"
+  ],
+  [
+    "HU01",
+    "Definir validaciones de stock",
+    "Franco Vallejos",
+    "Pendiente"
+  ],
+  [
+    "HU01",
+    "Definir reglas de retiro en tienda",
+    "Franco Vallejos",
+    "Pendiente"
+  ],
+  [
+    "HU01",
+    "Revisar escenarios excepcionales",
+    "Franco Vallejos",
+    "Pendiente"
+  ],
+  [
+    "HU01",
+    "Validar proceso con Product Owner",
+    "Franco Vallejos",
+    "Pendiente"
+  ],
+  [
+    "HU01",
+    "Documentar proceso final",
+    "Franco Vallejos",
+    "Pendiente"
+  ],
+  [
+    "HU02",
+    "Analizar flujo actual de inventario",
+    "Brayan Alberca",
+    "Completado"
+  ],
+  [
+    "HU02",
+    "Identificar puntos de actualización",
+    "Brayan Alberca",
+    "Completado"
+  ],
+  [
+    "HU02",
+    "Diseñar eventos de sincronización",
+    "Brayan Alberca",
+    "En progreso"
+  ],
+  [
+    "HU02",
+    "Modelar BPMN de inventario",
+    "Brayan Alberca",
+    "En progreso"
+  ],
+  [
+    "HU02",
+    "Registrar excepciones por error",
+    "Brayan Alberca",
+    "Pendiente"
+  ],
+  [
+    "HU02",
+    "Diseñar alertas de stock bajo",
+    "Brayan Alberca",
+    "Pendiente"
+  ],
+  [
+    "HU02",
+    "Definir métricas de disponibilidad",
+    "Brayan Alberca",
+    "Pendiente"
+  ],
+  [
+    "HU02",
+    "Elaborar documentación técnica",
+    "Brayan Alberca",
+    "Pendiente"
+  ],
+  [
+    "HU02",
+    "Validar requerimientos",
+    "Brayan Alberca",
+    "Pendiente"
+  ],
+  [
+    "HU02",
+    "Presentar resultados al equipo",
+    "Brayan Alberca",
+    "Pendiente"
+  ],
+  [
+    "HU03",
+    "Analizar política de devoluciones",
+    "Abraham Vergara",
+    "Completado"
+  ],
+  [
+    "HU03",
+    "Identificar actores responsables",
+    "Abraham Vergara",
+    "Completado"
+  ],
+  [
+    "HU03",
+    "Diseñar flujo TO-BE",
+    "Abraham Vergara",
+    "En progreso"
+  ],
+  [
+    "HU03",
+    "Modelar BPMN de devolución",
+    "Abraham Vergara",
+    "En progreso"
+  ],
+  [
+    "HU03",
+    "Definir flujo de reembolso",
+    "Abraham Vergara",
+    "Pendiente"
+  ],
+  [
+    "HU03",
+    "Registrar causas de devolución",
+    "Abraham Vergara",
+    "Pendiente"
+  ],
+  [
+    "HU03",
+    "Diseñar indicadores del proceso",
+    "Abraham Vergara",
+    "Pendiente"
+  ],
+  [
+    "HU03",
+    "Elaborar documentación funcional",
+    "Abraham Vergara",
+    "Pendiente"
+  ],
+  [
+    "HU03",
+    "Realizar revisión interna",
+    "Abraham Vergara",
+    "Pendiente"
+  ],
+  [
+    "HU03",
+    "Obtener aprobación del Product Owner",
+    "Abraham Vergara",
+    "Pendiente"
+  ],
+  [
+    "HU04",
+    "Analizar proceso de afiliación",
+    "Fernando Fernandez",
+    "Completado"
+  ],
+  [
+    "HU04",
+    "Identificar requisitos de registro",
+    "Fernando Fernandez",
+    "Completado"
+  ],
+  [
+    "HU04",
+    "Diseñar flujo de validación",
+    "Fernando Fernandez",
+    "En progreso"
+  ],
+  [
+    "HU04",
+    "Modelar BPMN del proceso",
+    "Fernando Fernandez",
+    "En progreso"
+  ],
+  [
+    "HU04",
+    "Definir criterios de aprobación",
+    "Fernando Fernandez",
+    "Pendiente"
+  ],
+  [
+    "HU04",
+    "Diseñar flujo de actualización de datos",
+    "Fernando Fernandez",
+    "Pendiente"
+  ],
+  [
+    "HU04",
+    "Identificar riesgos operativos",
+    "Fernando Fernandez",
+    "Pendiente"
+  ],
+  [
+    "HU04",
+    "Documentar procedimiento",
+    "Fernando Fernandez",
+    "Pendiente"
+  ],
+  [
+    "HU04",
+    "Validar con stakeholders",
+    "Fernando Fernandez",
+    "Pendiente"
+  ],
+  [
+    "HU04",
+    "Publicar versión final",
+    "Fernando Fernandez",
+    "Pendiente"
+  ]
+]

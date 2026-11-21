@@ -1,0 +1,265 @@
+{
+  "historias": [
+    {
+      "id": "HU01",
+      "nombre": "Compra online con retiro en tienda",
+      "epicas": [
+        "E01"
+      ],
+      "prioridad": "Alta",
+      "puntos": 8,
+      "sprint": 2,
+      "requisitos": [
+        "RF01",
+        "RF02"
+      ],
+      "criterios": [
+        "El proceso TO-BE incluye consulta de disponibilidad, reserva, preparación y entrega.",
+        "Se contemplan los escenarios de falta de stock, cancelación y retiro.",
+        "Se identifica cómo se comunica al cliente que su pedido está listo."
+      ]
+    },
+    {
+      "id": "HU02",
+      "nombre": "Actualización del inventario",
+      "epicas": [
+        "E01",
+        "E03"
+      ],
+      "prioridad": "Alta",
+      "puntos": 8,
+      "sprint": 2,
+      "requisitos": [
+        "RF01",
+        "RF02",
+        "RF09"
+      ],
+      "criterios": [
+        "Se distinguen las cantidades físicas, reservadas y disponibles.",
+        "Se documentan los eventos que modifican el inventario.",
+        "Se define cómo detectar y resolver diferencias o actualizaciones fallidas."
+      ]
+    },
+    {
+      "id": "HU03",
+      "nombre": "Gestión de devoluciones",
+      "epicas": [
+        "E01"
+      ],
+      "prioridad": "Alta",
+      "puntos": 5,
+      "sprint": 2,
+      "requisitos": [
+        "RF03"
+      ],
+      "criterios": [
+        "El modelo contempla la validación de la compra y las condiciones de devolución.",
+        "Se documentan el reembolso y el tratamiento del producto devuelto.",
+        "Se identifican responsables y estados del proceso."
+      ]
+    },
+    {
+      "id": "HU04",
+      "nombre": "Gestión de sellers",
+      "epicas": [
+        "E01",
+        "E03"
+      ],
+      "prioridad": "Media",
+      "puntos": 5,
+      "sprint": 2,
+      "requisitos": [
+        "RF04"
+      ],
+      "criterios": [
+        "Se define el flujo de registro, revisión y aprobación de sellers.",
+        "Se establecen los datos necesarios para publicar productos.",
+        "Se documenta cómo intercambiar pedidos, existencias y estados de despacho."
+      ]
+    },
+    {
+      "id": "HU05",
+      "nombre": "Diseño de una arquitectura modular",
+      "epicas": [
+        "E02"
+      ],
+      "prioridad": "Alta",
+      "puntos": 13,
+      "sprint": 3,
+      "requisitos": [
+        "RF05",
+        "RF06",
+        "RF07"
+      ],
+      "criterios": [
+        "El diagrama identifica los servicios, sus responsabilidades y dependencias.",
+        "Se describe la función del API Gateway.",
+        "Se documenta un flujo de validación y despliegue de cambios."
+      ]
+    },
+    {
+      "id": "HU06",
+      "nombre": "Integración entre canales y sistemas",
+      "epicas": [
+        "E03"
+      ],
+      "prioridad": "Alta",
+      "puntos": 13,
+      "sprint": 3,
+      "requisitos": [
+        "RF08",
+        "RF09",
+        "RF10"
+      ],
+      "criterios": [
+        "Se documentan entradas, salidas y errores de las APIs prioritarias.",
+        "Se identifican los eventos de inventario y pedidos.",
+        "Se contemplan solicitudes duplicadas, reintentos y fallos de comunicación."
+      ]
+    },
+    {
+      "id": "HU07",
+      "nombre": "Datos e indicadores del negocio",
+      "epicas": [
+        "E04"
+      ],
+      "prioridad": "Alta",
+      "puntos": 13,
+      "sprint": 4,
+      "requisitos": [
+        "RF11",
+        "RF12",
+        "RF13"
+      ],
+      "criterios": [
+        "Se presenta el modelo de datos con entidades, relaciones y restricciones.",
+        "Se identifican las fuentes de información y su frecuencia de actualización.",
+        "Se define la fórmula y fuente de cada indicador propuesto."
+      ]
+    },
+    {
+      "id": "HU08",
+      "nombre": "Acceso seguro y auditoría",
+      "epicas": [
+        "E05"
+      ],
+      "prioridad": "Alta",
+      "puntos": 8,
+      "sprint": 5,
+      "requisitos": [
+        "RF14",
+        "RF15",
+        "RF16",
+        "RF17"
+      ],
+      "criterios": [
+        "Se presenta una matriz de roles y permisos.",
+        "Se identifican las operaciones que requieren registros de auditoría.",
+        "Se documentan controles de protección de datos y atención de incidentes."
+      ]
+    },
+    {
+      "id": "HU09",
+      "nombre": "Priorización y adopción de mejoras",
+      "epicas": [
+        "E06"
+      ],
+      "prioridad": "Alta",
+      "puntos": 8,
+      "sprint": 5,
+      "requisitos": [
+        "RF18",
+        "RF19",
+        "RF20",
+        "RF21"
+      ],
+      "criterios": [
+        "La hoja de ruta identifica prioridades, dependencias y responsables.",
+        "La evaluación económica diferencia costos, beneficios y supuestos.",
+        "Se incluyen riesgos, acciones de continuidad y actividades de capacitación."
+      ]
+    },
+    {
+      "id": "HU10",
+      "nombre": "Evaluación del pronóstico de demanda con IA",
+      "epicas": [
+        "E07"
+      ],
+      "prioridad": "Media",
+      "puntos": 5,
+      "sprint": 6,
+      "requisitos": [
+        "RF22",
+        "RF23"
+      ],
+      "criterios": [
+        "Se identifican los datos necesarios y sus limitaciones.",
+        "Se propone comparar el modelo con un método básico de pronóstico.",
+        "Se definen métricas de error y revisión humana de los resultados."
+      ]
+    },
+    {
+      "id": "HU11",
+      "nombre": "Evaluación de RFID para inventario",
+      "epicas": [
+        "E08"
+      ],
+      "prioridad": "Media",
+      "puntos": 5,
+      "sprint": 6,
+      "requisitos": [
+        "RF24"
+      ],
+      "criterios": [
+        "Se delimita un piloto con productos y ubicaciones seleccionados.",
+        "Se describe cómo integrar las lecturas con el sistema de inventario.",
+        "Se propone medir exactitud, tiempo de conteo y costo del piloto."
+      ]
+    },
+    {
+      "id": "HU12",
+      "nombre": "Evaluación de trazabilidad con blockchain",
+      "epicas": [
+        "E08"
+      ],
+      "prioridad": "Baja",
+      "puntos": 3,
+      "sprint": 6,
+      "requisitos": [
+        "RF25"
+      ],
+      "criterios": [
+        "Se identifican los participantes y eventos que serían registrados.",
+        "Se compara blockchain con una alternativa de base de datos centralizada.",
+        "Se emite una recomendación sustentada en costos, beneficios y riesgos."
+      ]
+    }
+  ],
+  "requisitos": {
+    "RF01": "Consultar la disponibilidad de productos por tienda y centro de distribución antes de confirmar un pedido.",
+    "RF02": "Reservar el inventario asociado a un pedido y actualizar sus estados hasta la entrega o cancelación.",
+    "RF03": "Gestionar devoluciones, considerando la validación de la compra, el reembolso y la actualización del inventario.",
+    "RF04": "Gestionar el registro de sellers, la validación de sus productos y el seguimiento de sus pedidos.",
+    "RF05": "Organizar la solución en servicios de catálogo, carrito, pedidos, inventario, pagos y fidelización.",
+    "RF06": "Definir un API Gateway para canalizar las solicitudes y aplicar controles comunes de acceso.",
+    "RF07": "Establecer un flujo de integración y entrega continua con validaciones previas a cada despliegue.",
+    "RF08": "Definir APIs para intercambiar información de productos, inventario, pedidos y pagos.",
+    "RF09": "Establecer eventos para comunicar cambios de inventario y estados de pedidos.",
+    "RF10": "Contemplar reintentos y mecanismos para evitar que una solicitud repetida genere operaciones duplicadas.",
+    "RF11": "Diseñar un modelo relacional para clientes, productos, pedidos, pagos e inventario.",
+    "RF12": "Evaluar el uso de NoSQL para información con estructuras variables, como el catálogo.",
+    "RF13": "Proponer una arquitectura analítica que consolide información de los canales y permita consultar indicadores de ventas, inventario y entregas.",
+    "RF14": "Definir perfiles y permisos para clientes, sellers, personal de tienda y administradores.",
+    "RF15": "Registrar accesos y operaciones críticas para fines de auditoría.",
+    "RF16": "Contemplar la gestión de consentimientos y solicitudes relacionadas con datos personales.",
+    "RF17": "Establecer un procedimiento para identificar, atender y documentar incidentes de seguridad.",
+    "RF18": "Establecer responsables para la aprobación, ejecución y seguimiento de las iniciativas tecnológicas.",
+    "RF19": "Definir indicadores para evaluar exactitud del inventario, cumplimiento de entregas, disponibilidad e incidentes.",
+    "RF20": "Elaborar una matriz de riesgos, un plan de continuidad y un plan de capacitación.",
+    "RF21": "Evaluar costos, beneficios y retorno esperado de las iniciativas propuestas.",
+    "RF22": "Evaluar un caso de pronóstico de demanda para apoyar la reposición de productos.",
+    "RF23": "Analizar la viabilidad de recomendaciones personalizadas, detección de fraude y asistencia virtual.",
+    "RF24": "Proponer un piloto de RFID para registrar movimientos de productos y contrastarlos con el inventario.",
+    "RF25": "Evaluar blockchain para registrar eventos de procedencia, autenticidad y garantías de productos seleccionados."
+  }
+}

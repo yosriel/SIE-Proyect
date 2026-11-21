@@ -1,0 +1,52 @@
+[
+  {
+    "id": "CP-S3-01",
+    "nombre": "Verificar que la arquitectura responde a los nueve entregables del sprint",
+    "esperado": "Módulos, arquitectura lógica, arquitectura física, microservicios, componentes, APIs principales, API Gateway, escalabilidad y documentación están presentes y fechados; todo entregable ausente se registra como defecto."
+  },
+  {
+    "id": "CP-S3-02",
+    "nombre": "Verificar que el contrato de API permite ejecutar una operación sin ambigüedad",
+    "esperado": "Cada operación declara petición y respuesta de ejemplo, tipos, campos obligatorios, códigos de error y versión; una operación sin ellos no se puede ejecutar y se reporta como defecto."
+  },
+  {
+    "id": "CP-S3-03",
+    "nombre": "Verificar el flujo de eventos: producto, consumidor, orden, reintento y política ante duplicados",
+    "esperado": "Cada evento declara producto, consumidor, orden, reintento y política ante duplicados; ningún evento queda sin política de duplicados."
+  },
+  {
+    "id": "CP-S3-04",
+    "nombre": "Verificar la revisión de escalabilidad contra la carga declarada",
+    "esperado": "La arquitectura declara la demanda de pico y cómo responde a ella; si la cifra no está declarada, el caso se reporta como línea base y no como conformidad."
+  },
+  {
+    "id": "CP-S3-05",
+    "nombre": "Ejecutar la prueba de contrato en QA con consumidores simulados",
+    "esperado": "Cada contrato publicado tiene su prueba de contrato conforme o su marca de no ejecutable con justificación escrita."
+  },
+  {
+    "id": "CP-S3-06",
+    "nombre": "Verificar que el diagrama de integración cubre el ecosistema sin conexiones no declaradas",
+    "esperado": "Cada integración declara origen, destino, protocolo y frecuencia; ninguna conexión aparece en el diagrama sin estar declarada."
+  },
+  {
+    "id": "CP-S3-07",
+    "nombre": "Cobertura de módulos y componentes",
+    "esperado": "Todo módulo tiene al menos un microservicio asignado y un responsable; no queda componente huérfano ni servicio sin módulo."
+  },
+  {
+    "id": "CP-S3-08",
+    "nombre": "Correspondencia entre el modelo de datos y los campos expuestos por las APIs",
+    "esperado": "Todo campo expuesto existe en el modelo de datos y todo campo del modelo que la API publica aparece en el contrato; las diferencias están justificadas por escrito."
+  },
+  {
+    "id": "CP-S3-09",
+    "nombre": "Cobertura de operaciones del API Gateway",
+    "esperado": "Cada operación de cada servicio está expuesta exactamente una vez en el gateway, con su política de autenticación y de límite de tasa declaradas."
+  },
+  {
+    "id": "CP-S3-10",
+    "nombre": "Cobertura de las rutas de falla de la integración",
+    "esperado": "Toda llamada síncrona tiene su ruta de tiempo de espera, reintento y compensación; todo evento tiene su cola de error."
+  }
+]

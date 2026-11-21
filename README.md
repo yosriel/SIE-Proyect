@@ -28,3 +28,5 @@ npm run dev
 Ejecuta `npm test` para comprobar las cinco pruebas de negocio y las cuatro de integración. Estas últimas cubren el contrato, las solicitudes repetidas, la recuperación del canal y la migración de datos. Para probar la compilación estática, ejecuta `npm run build` y luego `npm run preview`. [Pruebas de integración](pruebas/integracion.test.js)
 
 El cierre del sprint incluye las tres versiones ejecutables y el documento del punto 8 del APF3. [Descargar la demostración](entrega/Omni-SI-Falabella-APF3.zip) · [Abrir el informe en Word](entrega/Punto-8-APF3.docx)
+
+En **Equipo de tienda → Probar los contratos** puedes recorrer los diez casos de arquitectura, medir una línea base y probar las doce operaciones con un consumidor simulado. El laboratorio enlaza el monitor para demostrar desconexiones, reintentos y recuperación.

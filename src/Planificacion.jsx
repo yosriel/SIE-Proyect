@@ -1,3 +1,4 @@
+import PlanDelEquipo from "./revision/PlanDelEquipo.jsx";
 const actividades = [
   ['SP1-01', 'Elaborar el Project Charter', 'Saul Aguilar'],
   ['SP1-02', 'Identificar a los interesados', 'Saul Aguilar'],
@@ -35,6 +36,7 @@ export default function Planificacion() {
           ))}
         </ul>
       </details>
+      <PlanDelEquipo/>
     </main>
   );
 }
