@@ -14,3 +14,6 @@
 .tabla-cuaderno th {background:#eef4e9}
 .cuaderno pre {overflow:auto;max-width:100%;background:#f2f5ef;padding:.8rem}
 @media(max-width:40rem){.cuaderno select{font-size:1rem}.tabla-cuaderno td{min-width:6rem}.cuaderno h3{font-size:1.2rem}}
+.ruta-proceso {list-style-position:inside;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:.6rem}
+.ruta-proceso li {background:#f1f6eb;border-radius:.6rem;padding:.7rem}
+.ruta-proceso a {display:block;margin-top:.3rem}
